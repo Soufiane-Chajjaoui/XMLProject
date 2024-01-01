@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="Universite" type="TypeUniversite"></xs:element>
+    <xs:complexType name="TypeUniversite">
+        <xs:sequence>
+            <xs:element name="Vile_Etablissment" maxOccurs="unbounded" type="TypeVileEtablissment" />
+        </xs:sequence>
+        <xs:attribute name="UniversiteID" type="xs:ID"></xs:attribute>
+        <xs:attribute name="UniversiteName" type="xs:string"></xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="TypeVileEtablissment">
+        <xs:sequence>
+            <xs:element name="Filier_Diplome" type="TypeFilierDiplome" maxOccurs="unbounded"></xs:element>
+        </xs:sequence>
+        <xs:attribute name="VileID" type="xs:ID"></xs:attribute>
+        <xs:attribute name="Vile_Etablissment" type="xs:string"></xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="TypeFilierDiplome">
+        <xs:sequence>
+            <xs:element name="type_Diplome" type="TypeTypeDiplome" maxOccurs="unbounded"></xs:element>
+        </xs:sequence>
+        <xs:attribute name="FilierID" type="xs:ID"></xs:attribute>
+        <xs:attribute name="FilierNom"></xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="TypeTypeDiplome">
+        <xs:sequence>
+            <xs:element name="typeEtablissment" type="TypetypeEtablissment" maxOccurs="unbounded"></xs:element>
+        </xs:sequence>
+        <xs:attribute name="TypeID" type="xs:ID"></xs:attribute>
+        <xs:attribute name="NomFilier" type="xs:string"></xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="TypetypeEtablissment"></xs:complexType>
+</xs:schema>

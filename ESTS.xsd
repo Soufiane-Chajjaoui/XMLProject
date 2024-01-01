@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"> 
+
+    <xs:element name="Universite" >
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Etablissment" maxOccurs="unbounded" type="TypeEtablissment"></xs:element>
+            </xs:sequence>
+            <xs:attribute name="idUniversite" type="xs:ID"></xs:attribute>
+        </xs:complexType>        
+    </xs:element>
+    <xs:complexType name="TypeEtablissment">
+        <xs:sequence>
+            <xs:element name="Etudiants" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Etudiant" maxOccurs="unbounded" type="Etudiant"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Departemant" type="TypeDepartement" maxOccurs="unbounded"></xs:element>
+        </xs:sequence>
+        <xs:attribute name="idEtablissment" type="xs:ID"></xs:attribute>
+        <xs:attribute name="NomEtablissment" type="xs:string"></xs:attribute>
+        <xs:attribute name="VileEtablissment" type="xs:string"></xs:attribute>
+        <xs:attribute name="RefUniversite" type="xs:IDREF"></xs:attribute>
+    </xs:complexType>    
+    <xs:complexType name="TypeDepartement">
+        <xs:attribute name="idDepartement" type="xs:ID"></xs:attribute>
+        <xs:attribute name="NomDepartement" type="xs:string"></xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="Person">
+        <xs:sequence>
+            <xs:element name="Prenom" type="xs:string"></xs:element>
+            <xs:element name="Nom" type="xs:string"></xs:element>
+            <xs:element name="Telephone" type="xs:string"></xs:element>
+            <xs:element name="address" type="xs:string"></xs:element>
+            <xs:element name="sex">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Homme"></xs:enumeration>
+                        <xs:enumeration value="Femme"></xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="DateNaissance" type="xs:date"></xs:element>
+        </xs:sequence>
+        <xs:attribute name="idPerson" type="xs:ID"></xs:attribute>
+        <xs:attribute name="RefEtablissment" type="xs:IDREF"></xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="Etudiant">
+        <xs:complexContent>
+            <xs:extension base="Person">
+                <xs:sequence>
+                   <xs:element name="Bac">
+                       <xs:complexType>
+                           <xs:sequence>
+                               <xs:element name="SpecBac">
+                                   <xs:simpleType>                                       
+                                       <xs:restriction base="xs:string">
+                                           <xs:enumeration value="BAC SCIENCES MATHÉMATIQUES B."></xs:enumeration>
+                                           <xs:enumeration value="BAC SCIENCES ÉCONOMIQUES."></xs:enumeration>
+                                           <xs:enumeration value="BAC SCIENCES PHYSIQUES."></xs:enumeration>
+                                           <xs:enumeration value="BAC SVT."></xs:enumeration>
+                                           <xs:enumeration value="BAC SCIENCES MATHÉMATIQUES A."></xs:enumeration>
+                                        </xs:restriction>                                       
+                                    </xs:simpleType>
+                                </xs:element>
+                               <xs:element name="Notes" maxOccurs="2">
+                                   <xs:complexType>
+                                       <xs:all>
+                                           <xs:element name="NoteNational"  type="TypeNote"></xs:element>
+                                           <xs:element name="NoteRegional"  type="TypeNote"></xs:element>
+                                       </xs:all>
+                                   </xs:complexType>
+                               </xs:element>
+                               <xs:element name="DateBac" type="xs:date"></xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:simpleType name="TypeNote">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="10"></xs:minInclusive>
+            <xs:maxInclusive value="20"></xs:maxInclusive>
+            <xs:totalDigits value="4"></xs:totalDigits>
+            <xs:fractionDigits value="2"></xs:fractionDigits>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
