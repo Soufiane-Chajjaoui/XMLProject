@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Universite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="SchemaStructure.xsd" UniversiteName="CaddyAyad" UniversiteID="CM1234">
-    
+    xsi:noNamespaceSchemaLocation="SCHEMA-ESTS.xsd"  idUniversite="CM1234"  UniversiteName="Cady ayyad">
+    <Etablissments>
+        <Etablissment idEtablissment="EST1" NomEtablissment="ECOLE Superieure de Technologie de SAFI" VileEtablissment="safi" RefUniversite="CM1234">
+            <Etudiants>
+                <Etudiant CNE="K133114870" idPerson="P1">
+                    <Prenom>Soufiane</Prenom>
+                    <Nom>Chajjaoui</Nom>
+                    <Telephone>0720025322</Telephone>
+                    <address>N:42 Rue 19 okba bnou nafia,Safi </address>
+                    <sex>Homme</sex>
+                    <DateNaissance>2003-09-08</DateNaissance>
+                    <Bac>
+                        <SpecBac>BAC SCIENCES PHYSIQUES.</SpecBac>
+                        <Notes>
+                            <NoteNational>14.36</NoteNational>
+                            <NoteRegional>12.46</NoteRegional>
+                        </Notes>
+                        <DateBac>2021</DateBac>
+                    </Bac>
+                </Etudiant>
+            </Etudiants>
+            <Departments>
+                <Department idDepartment="Dep1">Genie Informatique</Department>
+                <Department idDepartment="Dep2">Techneque instrumental de managment et quality</Department>
+                <Department idDepartment="Dep3">Techneque de Managment</Department>
+                <Department idDepartment="Dep4">Genie Industriel</Department>
+            </Departments>
+            <Enseignants>
+                <Enseignant idPerson="P2" RefsEtablissment="EST1">
+                    <Prenom>Jamal</Prenom>
+                    <Nom>Bakkas</Nom>
+                    <Telephone>0606060600</Telephone>
+                    <address>Safi, Massira 12</address>
+                    <sex>Homme</sex>
+                    <DateNaissance>1973-09-20</DateNaissance>
+                    <Matiers>
+                        <Matier>UML</Matier>
+                        <Matier>Structure De Donnees</Matier>
+                        <Matier>Development Web</Matier>
+                    </Matiers>
+                </Enseignant>
+                <Enseignant idPerson="P3" RefsEtablissment="EST1">
+                    <Prenom>Soufiane</Prenom>
+                    <Nom>Elhourri</Nom>
+                    <Telephone>0606060600</Telephone>
+                    <address>Safi, Massira 12</address>
+                    <sex>Homme</sex>
+                    <DateNaissance>1992-09-20</DateNaissance>
+                    <Matiers>
+                        <Matier>Network Administration</Matier>
+                        <Matier>Development Web</Matier>
+                    </Matiers>
+                </Enseignant>
+            </Enseignants>
+        </Etablissment>
+    </Etablissments>
 </Universite>
