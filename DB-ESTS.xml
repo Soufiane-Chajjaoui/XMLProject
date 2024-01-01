@@ -53,6 +53,18 @@
                         <Matier>Development Web</Matier>
                     </Matiers>
                 </Enseignant>
+                <Enseignant idPerson="P4" RefsEtablissment="EST1">
+                    <Prenom>Khadija</Prenom>
+                    <Nom>Arhid</Nom>
+                    <Telephone>0606060600</Telephone>
+                    <address>Casablanca , roche noire</address>
+                    <sex>Homme</sex>
+                    <DateNaissance>1992-09-20</DateNaissance>
+                    <Matiers>
+                        <Matier>Network Administration</Matier>
+                        <Matier>Development Web</Matier>
+                    </Matiers>
+                </Enseignant>
             </Enseignants>
         </Etablissment>
     </Etablissments>
