@@ -6,27 +6,66 @@
                 <title>ESTS</title>
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"></link>
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"/>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"/>
+                <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
                 <script>
                     $(document).ready(function(){
-                    $(".card").hide();
-                    $("#etablissmentsCard").show();
-                    // jQuery function to handle click on the navbar brand
-                    $(".nav-link").click(function(){
-                    console.log("Clicked on " + $(this).text() + " link!");
-                    
-                    // Remove "active" class from all nav links
-                    $(".nav-link").removeClass("active");
-                    // Add "active" class to the clicked nav link
-                    $(this).addClass("active");
-                    
-                    // Hide all card elements
-                    $(".card").hide();
-                    
-                    // Show the specific card based on the clicked link
-                    var linkText = $(this).text().toLowerCase();
-                    $("#" + linkText + "Card").show();
-                    });
+                        $(".card").hide();
+                        $("#etablissmentsCard").show();
+                        // jQuery function to handle click on the navbar brand
+                        $(".nav-link").click(function(){
+                            console.log("Clicked on " + $(this).text() + " link!");
+                            
+                            // Remove "active" class from all nav links
+                            $(".nav-link").removeClass("active");
+                            // Add "active" class to the clicked nav link
+                            $(this).addClass("active");
+                            
+                            // Hide all card elements
+                            $(".card").hide();
+                            
+                            // Show the specific card based on the clicked link
+                            var linkText = $(this).text().toLowerCase();
+                            $("#" + linkText + "Card").show();
+                        });
+                        $("form").submit(function (event) {
+                           // Prevent the default form submission
+                           event.preventDefault();
+                           var formData = {};
+
+                           // Gather form data
+                           var formData = {
+                           prenom: $("#prenom").val(),
+                           nom: $("#nom").val(),
+                           email: $("#email").val(),
+                           tele: $("#tele").val(),
+                           address: $("#address").val(),
+                           filiere: $("#filiere").val(),
+                           sexe: $("#Sexe").val(),
+                           regional: $("#regional").val(),
+                           national: $("#national").val(),
+                           datenaiss: $("#datenaiss").val()
+                           };
+                           
+                           console.log(formData) ;
+                           
+                           $.ajax({
+                           type: "POST",
+                           url: "http://localhost:8080/Etudiants", // Replace with your actual API endpoint
+                           contentType: "application/json",
+                           data: JSON.stringify(formData),
+                           success: function (response) {
+                           console.log("Data sent successfully:", response);
+                           // You can perform additional actions here if needed
+                           },
+                           error: function (xhr, status, error) {
+                           console.error("Error sending data:");
+                           console.error("Status:", status);
+                           console.error("Error:", error);
+                           console.error("Response Text:", xhr.responseText);
+                           // You can perform additional actions here if needed
+                           }
+                           });
+                        });
                     });
                 </script>
                 <style>
@@ -135,33 +174,66 @@
                             <form>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="validationDefault01">First name</label>
-                                        <input type="text" class="form-control" id="validationDefault01" value="Mark"  />
+                                        <label for="prenom">Prenom</label>
+                                        <input type="text" class="form-control" id="prenom" />
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="validationDefault02">Last name</label>
-                                        <input type="text" class="form-control" id="validationDefault02" value="Otto"  />
+                                        <label for="nom">Nom</label>
+                                        <input type="text" class="form-control" id="nom"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb3">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email"/>
+                                        </div>
+                                        <div class="col-md-6 mb3">
+                                            <label for="tele">Telephone</label>
+                                            <input type="tel" class="form-control" id="tele"/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="validationDefault03">City</label>
-                                        <input type="text" class="form-control" id="validationDefault03"  />
+                                        <label for="validationDefault03">Address</label>
+                                        <input type="text" class="form-control" id="address"  />
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label for="validationDefault04">State</label>
-                                        <select class="custom-select" id="validationDefault04"  >
-                                            <option  value="21">Choose...</option>
-                                            <option>...</option>
+                                        <label for="filiere">Filiere</label>
+                                        <select class="custom-select" id="filiere"  >
+                                            <option value="BAC SCIENCES MATHÉMATIQUES B.">BAC SCIENCES MATHÉMATIQUES B.</option>
+                                            <option value="BAC SCIENCES ÉCONOMIQUES.">BAC SCIENCES ÉCONOMIQUES.</option>
+                                            <option value="BAC SCIENCES PHYSIQUES.">BAC SCIENCES PHYSIQUES.</option>
+                                            <option value="BAC SVT.">BAC SVT.</option>
+                                            <option value="BAC SCIENCES MATHÉMATIQUES A.">BAC SCIENCES MATHÉMATIQUES A.</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label for="validationDefault05">Zip</label>
-                                        <input type="text" class="form-control" id="validationDefault05"  />
+                                        <label for="sexe">Sexe</label>
+                                        <select class="custom-select" id="Sexe">
+                                            <option  value="homme">Homme</option>
+                                            <option  value="femme">Femme</option>
+                                        </select>
                                     </div>
                                 </div>
+                                <div class="form-row">
+                                    <div class="col-md-3 mb3">
+                                        <label for="regional">Regional</label>
+                                        <input type="text" class="form-control" id="regional"/>
+                                    </div>
+                                    <div class="col-md-3 mb3">
+                                        <label for="national">National</label>
+                                        <input type="text" class="form-control" id="national"/>
+                                    </div>
+                                    <div class="col-md-3 mb3">
+                                        <label for="datenaiss">Date de Naissance</label>
+                                        <input type="date" class="form-control" id="datenaiss"/>
+                                    </div>
+                                </div>
+                                <hr></hr>
                                 <div class="d-flex justify-content-center">
-                                    <button class="btn btn-primary" type="submit">Submit form</button>
+                                    <button class="btn btn-primary" type="submit">Ajoute</button>
                                 </div>
                             </form>
                         </div>
