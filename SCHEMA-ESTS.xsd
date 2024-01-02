@@ -65,6 +65,13 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+            <xs:element name="email">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"></xs:pattern>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="address" type="xs:string"></xs:element>
             <xs:element name="sex">
                 <xs:simpleType>

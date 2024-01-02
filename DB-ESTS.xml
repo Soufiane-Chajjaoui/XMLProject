@@ -10,6 +10,7 @@
                     <Prenom>Soufiane</Prenom>
                     <Nom>Chajjaoui</Nom>
                     <Telephone>0720025322</Telephone>
+                    <email>schajjaoui@gmail.com</email>
                     <address>N:42 Rue 19 okba bnou nafia,Safi </address>
                     <sex>Homme</sex>
                     <DateNaissance>2003-09-08</DateNaissance>
@@ -34,7 +35,8 @@
                     <Prenom>Jamal</Prenom>
                     <Nom>Bakkas</Nom>
                     <Telephone>0606060600</Telephone>
-                    <address>Safi, Massira 12</address>
+                    <email>schajjaoui@gmail.com</email>
+                    <address>Safi, Centre vile 12</address>
                     <sex>Homme</sex>
                     <DateNaissance>1973-09-20</DateNaissance>
                     <Matiers>
@@ -47,7 +49,8 @@
                     <Prenom>Soufiane</Prenom>
                     <Nom>Elhourri</Nom>
                     <Telephone>0606060600</Telephone>
-                    <address>Safi, Massira 12</address>
+                    <email>schajjaoui@gmail.com</email>
+                    <address>Safi, Lamia 12</address>
                     <sex>Homme</sex>
                     <DateNaissance>1992-09-20</DateNaissance>
                     <Matiers>
@@ -59,22 +62,37 @@
                     <Prenom>Khadija</Prenom>
                     <Nom>Arhid</Nom>
                     <Telephone>0606060600</Telephone>
+                    <email>schajjaoui@gmail.com</email>
                     <address>Casablanca , roche noire</address>
-                    <sex>Homme</sex>
-                    <DateNaissance>1992-09-20</DateNaissance>
+                    <sex>Femme</sex>
+                    <DateNaissance>1984-09-20</DateNaissance>
                     <Matiers>
-                        <Matier>Network Administration</Matier>
-                        <Matier>Development Web</Matier>
+                        <Matier>Systeme d'information</Matier>
+                    </Matiers>
+                </Enseignant>
+                <Enseignant idPerson="P5" RefsEtablissment="EST1">
+                    <Prenom>Illham</Prenom>
+                    <Nom>Mounir</Nom>
+                    <Telephone>0606060600</Telephone>
+                    <email>schajjaoui@gmail.com</email>
+                    <address>Safi , Lamia</address>
+                    <sex>Femme</sex>
+                    <DateNaissance>1973-09-20</DateNaissance>
+                    <Matiers>
+                        <Matier>Base de donnees Avance</Matier>
+                        <Matier>DateWarehouse</Matier>
+                        <Matier>AI</Matier>
                     </Matiers>
                 </Enseignant>
             </Enseignants>
         </Etablissment>
         <Etablissment idEtablissment="EST2" NomEtablissment="ECOLE Superieure de Technologie de Essaouira" VileEtablissment="Essaouira" RefUniversite="CM1234">
             <Etudiants>
-                <Etudiant CNE="K133114870" idPerson="P5">
+                <Etudiant CNE="K133114870" idPerson="P10">
                     <Prenom>Siham</Prenom>
                     <Nom>Driham</Nom>
                     <Telephone>0720025322</Telephone>
+                    <email>schajjaoui@gmail.com</email>
                     <address>N:42 Rue 19 okba bnou nafia,Safi </address>
                     <sex>Homme</sex>
                     <DateNaissance>2003-09-08</DateNaissance>
@@ -92,13 +110,14 @@
                 <Department idDepartment="Dep1">Genie Informatique</Department>
                 <Department idDepartment="Dep2">Techneque instrumental de managment et quality</Department>
                 <Department idDepartment="Dep3">Techneque de Managment</Department>
-                <Department idDepartment="Dep4">Genie Industriel</Department>
+                <Department idDepartment="Dep4">Energie Renevualabe</Department>
             </Departments>
             <Enseignants>
                 <Enseignant idPerson="P6" RefsEtablissment="EST1">
                     <Prenom>Jamal</Prenom>
                     <Nom>Bakkas</Nom>
                     <Telephone>0606060600</Telephone>
+                    <email>schajjaoui@gmail.com</email>
                     <address>Safi, Massira 12</address>
                     <sex>Homme</sex>
                     <DateNaissance>1973-09-20</DateNaissance>
@@ -112,6 +131,7 @@
                     <Prenom>Soufiane</Prenom>
                     <Nom>Elhourri</Nom>
                     <Telephone>0606060600</Telephone>
+                    <email>schajjaoui@gmail.com</email>
                     <address>Safi, Massira 12</address>
                     <sex>Homme</sex>
                     <DateNaissance>1992-09-20</DateNaissance>
@@ -124,6 +144,7 @@
                     <Prenom>Khadija</Prenom>
                     <Nom>Arhid</Nom>
                     <Telephone>0606060600</Telephone>
+                    <email>schajjaoui@gmail.com</email>
                     <address>Casablanca , roche noire</address>
                     <sex>Homme</sex>
                     <DateNaissance>1992-09-20</DateNaissance>

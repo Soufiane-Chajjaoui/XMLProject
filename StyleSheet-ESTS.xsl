@@ -86,9 +86,10 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Etablissment</th>
-                                        <th scope="col">Vile</th>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Prenom</th>
                                         <th scope="col">Telephone</th>
+                                        <th scope="col">email</th>
                                         <th scope="col">address</th>
                                         <th scope="col">Enseigner</th>
                                         <th scope="col" class="text-center">Action</th>
@@ -101,6 +102,7 @@
                                             <td><xsl:value-of select="Nom"/></td>
                                             <td><xsl:value-of select="Prenom"/></td>
                                             <td><xsl:value-of select="Telephone"/></td>
+                                            <td><xsl:value-of select="email"/></td>
                                             <td><xsl:value-of select="address"/></td>
                                             <td><xsl:for-each select="Matiers/Matier">
                                                 <xsl:value-of select="."/>
@@ -130,10 +132,41 @@
                     <div class="card" id="inscriptionCard">
                         <div class="card-header">Inscription Form</div>
                         <div class="card-body">
-                            <!-- Inscription Form -->
-                            <!-- Form Content -->
+                            <form>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefault01">First name</label>
+                                        <input type="text" class="form-control" id="validationDefault01" value="Mark"  />
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefault02">Last name</label>
+                                        <input type="text" class="form-control" id="validationDefault02" value="Otto"  />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefault03">City</label>
+                                        <input type="text" class="form-control" id="validationDefault03"  />
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationDefault04">State</label>
+                                        <select class="custom-select" id="validationDefault04"  >
+                                            <option  value="21">Choose...</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationDefault05">Zip</label>
+                                        <input type="text" class="form-control" id="validationDefault05"  />
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-primary" type="submit">Submit form</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                    
                 </div>
               <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
                 
