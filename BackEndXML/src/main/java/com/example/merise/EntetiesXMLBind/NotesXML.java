@@ -6,24 +6,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class NotesXML {
 
-    private NoteXML noteNational;
-    private NoteXML noteRegional;
+    private String national;
+    private String regional;
 
-    @XmlElement(name = "NoteNational", required = true)
-    public NoteXML getNoteNational() {
-        return noteNational;
+    @XmlElement(name = "National")
+    public String getNational() {
+        return national;
     }
 
-    public void setNoteNational(NoteXML noteNational) {
-        this.noteNational = noteNational;
+    public void setNational(String national) {
+        this.national = national;
     }
 
-    @XmlElement(name = "NoteRegional", required = true)
-    public NoteXML getNoteRegional() {
-        return noteRegional;
+    @XmlElement(name = "Regional")
+    public String getRegional() {
+        return regional;
     }
 
-    public void setNoteRegional(NoteXML noteRegional) {
-        this.noteRegional = noteRegional;
+    public void setRegional(String regional) {
+        this.regional = regional;
     }
 }

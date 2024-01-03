@@ -1,14 +1,12 @@
 package com.example.merise.services;
 
-import java.io.File;
-import java.util.Random;
+import com.example.merise.EntetiesXMLBind.EtudiantXML;
+import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
-
-import org.springframework.stereotype.Service;
-
-import com.example.merise.EntetiesXMLBind.EtudiantXML;
+import java.io.File;
+import java.util.Random;
  
 @Service
 public class EtudiantService {
@@ -34,6 +32,7 @@ public class EtudiantService {
 			
 			Marshaller marshaller = jaxbcontext.createMarshaller();
 			marshaller.marshal(etudiant , new File("D:\\laragon\\www\\ProjetXML\\EST.xml"));
+			 System.out.println(etudiant.getBac().getRegional());
 			System.out.println("Etudiant written to XML file successfully");
 			
 		} catch (Exception e) {

@@ -5,10 +5,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class BacXML {
-    
+
     private String specBac;
-    private NotesXML notes;
     private String dateBac;
+    private String national;
+    private String regional;
 
     @XmlElement(name = "SpecBac", required = true)
     public String getSpecBac() {
@@ -19,13 +20,22 @@ public class BacXML {
         this.specBac = specBac;
     }
 
-    @XmlElement(name = "Notes", required = true)
-    public NotesXML getNotes() {
-        return notes;
+    @XmlElement(name = "National" , required = true)
+    public String getNational() {
+        return national;
     }
 
-    public void setNotes(NotesXML notes) {
-        this.notes = notes;
+    public void setNational(String national) {
+        this.national = national;
+    }
+
+    @XmlElement(name = "Regional" , required = true)
+    public String getRegional() {
+        return regional;
+    }
+
+    public void setRegional(String regional) {
+        this.regional = regional;
     }
 
     @XmlElement(name = "DateBac", required = true)
