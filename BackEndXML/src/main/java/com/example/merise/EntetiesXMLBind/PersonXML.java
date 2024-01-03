@@ -3,6 +3,7 @@ package com.example.merise.EntetiesXMLBind;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
 
 @XmlRootElement
 public class PersonXML {
@@ -11,7 +12,7 @@ public class PersonXML {
     private String refEtablissment;
     private String prenom;
     private String nom;
-    private String telephone;
+    private String tele;
     private String email;
     private String address;
     private String sex;
@@ -22,8 +23,8 @@ public class PersonXML {
         return idPerson;
     }
 
-    public void setIdPerson(String idPerson) {
-        this.idPerson = idPerson;
+    public void setIdPerson() {
+        this.idPerson = getEmail();
     }
 
     @XmlAttribute(name = "RefEtablissment")
@@ -35,6 +36,13 @@ public class PersonXML {
         this.refEtablissment = refEtablissment;
     }
 
+    public void setTele(String tele) {
+        this.tele = tele;
+    }
+    @XmlElement(name = "Telephone" , required = true)
+    public String getTele(){
+        return  this.tele ;
+    }
     @XmlElement(name = "Prenom", required = true)
     public String getPrenom() {
         return prenom;
@@ -53,14 +61,6 @@ public class PersonXML {
         this.nom = nom;
     }
 
-    @XmlElement(name = "Telephone", required = true)
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
 
     @XmlElement(name = "email", required = true)
     public String getEmail() {
