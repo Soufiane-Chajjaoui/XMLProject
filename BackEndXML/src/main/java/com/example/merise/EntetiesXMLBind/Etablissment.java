@@ -1,34 +1,42 @@
 package com.example.merise.EntetiesXMLBind;
 
 
-import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
-@XmlRootElement
+@XmlRootElement(name = "etablissment")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Etablissment {
 
-    @XmlElement
-    private List<Etudiant> etudiants = new ArrayList<Etudiant>();
-    @XmlElement
-    private List<Enseignant> enseignants = new ArrayList<Enseignant>() ;
+    @XmlElement(name = "Etudiants" , required = true)
+    private Etudiants etudiants ;
+    @XmlElement(name = "Enseignants" , required = true)
+    private Enseignants enseignants ;
 
     public Etablissment() {
     }
 
-    public Etablissment(List<Etudiant> etudiants) {
+    public Etablissment(Etudiants etudiants) {
         this.etudiants = etudiants;
     }
 
-    public List<Etudiant> getEtudiants() {
+
+    public Etudiants getEtudiants() {
         return etudiants;
     }
 
-    public void setEtudiants(Etudiant etudiants) {
-        this.etudiants.add(etudiants);
+    public void setEtudiants(Etudiants etudiants) {
+        this.etudiants = etudiants;
     }
 
+    public Enseignants getEnseignants() {
+        return enseignants;
+    }
 
+    public void setEnseignants(Enseignants enseignants) {
+        this.enseignants = enseignants;
+    }
 }
