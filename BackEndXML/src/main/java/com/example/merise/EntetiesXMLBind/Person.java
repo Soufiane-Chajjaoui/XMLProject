@@ -3,10 +3,9 @@ package com.example.merise.EntetiesXMLBind;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Date;
 
-@XmlRootElement
-public class PersonXML {
+@XmlRootElement(name = "Person")
+public class Person {
 
     private String idPerson;
     private String refEtablissment;

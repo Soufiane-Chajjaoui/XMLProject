@@ -3,8 +3,8 @@ package com.example.merise.EntetiesXMLBind;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
-public class BacXML {
+@XmlRootElement(name = "Bac")
+public class Bac {
 
     private String specBac;
     private String dateBac;
@@ -20,7 +20,7 @@ public class BacXML {
         this.specBac = specBac;
     }
 
-    @XmlElement(name = "National" , required = true)
+    @XmlElement(name = "National" , required = true )
     public String getNational() {
         return national;
     }
