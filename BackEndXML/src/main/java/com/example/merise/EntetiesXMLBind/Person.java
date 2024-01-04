@@ -17,6 +17,21 @@ public class Person {
     private String sex;
     private String dateNaissance;
 
+    public Person() {
+    }
+
+    public Person(String idPerson, String refEtablissment, String prenom, String nom, String tele, String email, String address, String sex, String dateNaissance) {
+        this.idPerson = idPerson;
+        this.refEtablissment = refEtablissment;
+        this.prenom = prenom;
+        this.nom = nom;
+        this.tele = tele;
+        this.email = email;
+        this.address = address;
+        this.sex = sex;
+        this.dateNaissance = dateNaissance;
+    }
+
     @XmlAttribute(name = "idPerson", required = true)
     public String getIdPerson() {
         return idPerson;

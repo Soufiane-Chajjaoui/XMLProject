@@ -1,5 +1,7 @@
 package com.example.merise.EntetiesXMLBind;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -7,8 +9,7 @@ public class Etudiant extends Person {
 
     private String cne;
     private Bac bac;
-
-//    @XmlAttribute(name = "cne", required = true)
+    @XmlAttribute(name = "cne", required = true)
     public String getCne() {
         return cne;
     }
@@ -17,7 +18,7 @@ public class Etudiant extends Person {
         this.cne = CNE;
     }
 
-//    @XmlElement(name = "Bac", required = true)
+    @XmlElement(name = "Bac", required = true)
     public Bac getBac() {
         return bac;
     }

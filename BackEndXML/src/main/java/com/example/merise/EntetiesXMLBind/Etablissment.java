@@ -12,6 +12,8 @@ public class Etablissment {
 
     @XmlElement
     private List<Etudiant> etudiants = new ArrayList<Etudiant>();
+    @XmlElement
+    private List<Enseignant> enseignants = new ArrayList<Enseignant>() ;
 
     public Etablissment() {
     }
@@ -24,8 +26,8 @@ public class Etablissment {
         return etudiants;
     }
 
-    public void setEtudiants(List<Etudiant> etudiants) {
-        this.etudiants = etudiants;
+    public void setEtudiants(Etudiant etudiants) {
+        this.etudiants.add(etudiants);
     }
 
 
