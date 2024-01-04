@@ -1,10 +1,7 @@
 package com.example.merise.EntetiesXMLBind;
 
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +10,10 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Etablissment {
 
-    @XmlElement(name = "Etudiants")
-    private List<Etudiant> etudiants ;
+    @XmlElement
+    private List<Etudiant> etudiants = new ArrayList<Etudiant>();
 
     public Etablissment() {
-        etudiants = new ArrayList<Etudiant>();
     }
 
     public Etablissment(List<Etudiant> etudiants) {
@@ -28,8 +24,8 @@ public class Etablissment {
         return etudiants;
     }
 
-    public void setEtudiants(Etudiant etudiants) {
-        this.etudiants.add(etudiants);
+    public void setEtudiants(List<Etudiant> etudiants) {
+        this.etudiants = etudiants;
     }
 
 
