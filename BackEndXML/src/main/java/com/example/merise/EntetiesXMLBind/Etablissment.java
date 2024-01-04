@@ -1,22 +1,26 @@
 package com.example.merise.EntetiesXMLBind;
 
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
 
-@XmlRootElement(name = "etablissment")
+@XmlRootElement(name = "Etablissment")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Etablissment {
 
+    @XmlAttribute(name = "idEtablissment" , required = true)
+    @XmlID
+    private String idEtablissment ;
     @XmlElement(name = "Etudiants" , required = true)
     private Etudiants etudiants ;
     @XmlElement(name = "Enseignants" , required = true)
     private Enseignants enseignants ;
 
     public Etablissment() {
+    }
+
+    public Etablissment(String idetablissment){
+        this.idEtablissment = idetablissment ;
     }
 
     public Etablissment(Etudiants etudiants) {
@@ -38,5 +42,13 @@ public class Etablissment {
 
     public void setEnseignants(Enseignants enseignants) {
         this.enseignants = enseignants;
+    }
+
+    public String getIdEtablissment() {
+        return idEtablissment;
+    }
+
+    public void setIdEtablissment(String idEtablissment) {
+        this.idEtablissment = idEtablissment;
     }
 }

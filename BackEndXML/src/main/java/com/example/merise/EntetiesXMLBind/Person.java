@@ -1,13 +1,13 @@
 package com.example.merise.EntetiesXMLBind;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "Person")
 public class Person {
 
     private String idPerson;
+
+
     private String refEtablissment;
     private String prenom;
     private String nom;
@@ -33,6 +33,7 @@ public class Person {
     }
 
     @XmlAttribute(name = "idPerson", required = true)
+    @XmlID
     public String getIdPerson() {
         return idPerson;
     }
@@ -42,6 +43,7 @@ public class Person {
     }
 
     @XmlAttribute(name = "RefEtablissment")
+    @XmlIDREF
     public String getRefEtablissment() {
         return refEtablissment;
     }
