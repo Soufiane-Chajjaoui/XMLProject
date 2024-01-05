@@ -11,6 +11,16 @@ public class Bac {
     private String national;
     private String regional;
 
+    public Bac() {
+    }
+
+    public Bac(TypeBac specBac, String dateBac, String national, String regional) {
+        this.specBac = specBac;
+        this.dateBac = dateBac;
+        this.national = national;
+        this.regional = regional;
+    }
+
     @XmlElement(name = "SpecBac", required = true)
     public TypeBac getSpecBac() {
         return specBac;

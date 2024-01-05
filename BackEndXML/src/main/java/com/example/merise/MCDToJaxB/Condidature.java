@@ -15,6 +15,14 @@ public class Condidature {
     @XmlElement(name = "Choix")
     private List<FiliereEnum> choix = new ArrayList<>();
 
+    public Condidature() {
+    }
+
+    public Condidature(String idCondidature, List<FiliereEnum> choix) {
+        this.idCondidature = idCondidature;
+        this.choix = choix;
+    }
+
     public String getIdCondidature() {
         return idCondidature;
     }

@@ -1,13 +1,10 @@
 package com.example.merise.MCDToJaxB;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.*;
 
- public class Person {
+public class Person {
 
     private String idPerson;
-    private String refEtablissment;
     private String prenom;
     private String nom;
     private String tele;
@@ -19,9 +16,8 @@ import javax.xml.bind.annotation.XmlID;
     public Person() {
     }
 
-    public Person(String idPerson, String refEtablissment, String prenom, String nom, String tele, String email, String address, String sex, String dateNaissance) {
+    public Person(String idPerson , String prenom, String nom, String tele, String email, String address, String sex, String dateNaissance) {
         this.idPerson = idPerson;
-        this.refEtablissment = refEtablissment;
         this.prenom = prenom;
         this.nom = nom;
         this.tele = tele;
@@ -29,6 +25,9 @@ import javax.xml.bind.annotation.XmlID;
         this.address = address;
         this.sex = sex;
         this.dateNaissance = dateNaissance;
+    }
+
+    public Person(String idPerson, String refEtablissment, String prenom, String nom, String tele, String email, String address, String sex, String dateNaissance) {
     }
 
 
@@ -42,14 +41,6 @@ import javax.xml.bind.annotation.XmlID;
         this.idPerson = getEmail();
     }
 
-    @XmlAttribute(name = "RefEtablissment")
-    public String getRefEtablissment() {
-        return refEtablissment;
-    }
-
-    public void setRefEtablissment(String refEtablissment) {
-        this.refEtablissment = refEtablissment;
-    }
 
     public void setTele(String tele) {
         this.tele = tele;

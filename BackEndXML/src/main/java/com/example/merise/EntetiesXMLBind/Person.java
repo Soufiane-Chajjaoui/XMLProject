@@ -6,8 +6,29 @@ public class Person {
 
     private String idPerson;
 
+    private String RefEtablissment;
 
-    private String refEtablissment;
+    @XmlAttribute(name = "RefEtablissment")
+    public String getRefEtablissment() {
+        return RefEtablissment;
+    }
+
+    public void setRefEtablissment(String refEtablissment) {
+        RefEtablissment = refEtablissment;
+    }
+
+    public Person(String idPerson, String refEtablissment, String prenom, String nom, String tele, String email, String address, String sex, String dateNaissance) {
+        this.idPerson = idPerson;
+        RefEtablissment = refEtablissment;
+        this.prenom = prenom;
+        this.nom = nom;
+        this.tele = tele;
+        this.email = email;
+        this.address = address;
+        this.sex = sex;
+        this.dateNaissance = dateNaissance;
+    }
+
     private String prenom;
     private String nom;
     private String tele;
@@ -19,17 +40,7 @@ public class Person {
     public Person() {
     }
 
-    public Person(String idPerson, String refEtablissment, String prenom, String nom, String tele, String email, String address, String sex, String dateNaissance) {
-        this.idPerson = idPerson;
-        this.refEtablissment = refEtablissment;
-        this.prenom = prenom;
-        this.nom = nom;
-        this.tele = tele;
-        this.email = email;
-        this.address = address;
-        this.sex = sex;
-        this.dateNaissance = dateNaissance;
-    }
+
 
 
     @XmlAttribute(name = "idPerson", required = true)
@@ -42,14 +53,6 @@ public class Person {
         this.idPerson = getEmail();
     }
 
-    @XmlAttribute(name = "RefEtablissment")
-    public String getRefEtablissment() {
-        return refEtablissment;
-    }
-
-    public void setRefEtablissment(String refEtablissment) {
-        this.refEtablissment = refEtablissment;
-    }
 
     public void setTele(String tele) {
         this.tele = tele;

@@ -13,6 +13,25 @@ public class Etudiant extends Person {
 
     private Condidature condidature;
 
+    public Etudiant() {
+    }
+
+    public Etudiant(String idPerson, String prenom, String nom, String tele, String email, String address, String sex, String dateNaissance, String cne, Bac bac, Condidature condidature) {
+        super(idPerson, prenom, nom, tele, email, address, sex, dateNaissance);
+        this.cne = cne;
+        this.bac = bac;
+        this.condidature = condidature;
+    }
+
+    public Etudiant(String cne, Bac bac, Condidature condidature) {
+        this.cne = cne;
+        this.bac = bac;
+        this.condidature = condidature;
+    }
+
+
+
+
     @XmlElement(name = "Condidature")
     public Condidature getCondidature() {
         return condidature;
