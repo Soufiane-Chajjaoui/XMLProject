@@ -21,14 +21,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-<!--			API reference-->
+<!--		API Implementation-->
+
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-impl</artifactId>
 			<version>2.3.3</version>
 			<scope>runtime</scope>
 		</dependency>
-<!--		API Implementation-->
+
+		<!--			API reference-->
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
