@@ -32,6 +32,7 @@ public class Person {
         this.dateNaissance = dateNaissance;
     }
 
+
     @XmlAttribute(name = "idPerson", required = true)
     @XmlID
     public String getIdPerson() {
@@ -43,7 +44,6 @@ public class Person {
     }
 
     @XmlAttribute(name = "RefEtablissment")
-    @XmlIDREF
     public String getRefEtablissment() {
         return refEtablissment;
     }

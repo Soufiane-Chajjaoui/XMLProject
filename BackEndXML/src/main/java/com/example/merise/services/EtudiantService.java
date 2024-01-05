@@ -52,46 +52,41 @@ public class EtudiantService {
 				etablissments = (Etablissments) unmarshaller.unmarshal(file);
 			}
 
-			// Get the existing list of Etablissments
+
 			List<Etablissment> etablissmentList = etablissments.getEtablissments();
 
-			if (etablissmentList != null && !etablissmentList.isEmpty()) {
 
+			for (Etablissment etablissment : etablissmentList) {
+
+				if (etudiant.getRefEtablissment() != null && etudiant.getRefEtablissment().equals(etablissment.getIdEtablissment())) {
+
+					Etudiants etudiants = etablissment.getEtudiants();
+
+					if (etudiants == null) {
+						etudiants = new Etudiants();
+					}
+
+					etudiants.setEtudiant(etudiant);
+
+					etablissment.setEtudiants(etudiants);
+
+					etablissments.setEtablissments(etablissmentList);
+
+					try (PrintWriter pw = new PrintWriter(file)) {
+						pw.print("");
+					}
+					marshaller.marshal(etablissments, new PrintWriter(new BufferedWriter(new FileWriter(file))));
+
+					System.out.println("Etudiant has been added successfully.");
+					return;
+				}
 			}
 
-			// Create a new Etablissment
-			 Etablissment etablissment = new Etablissment("EST3");
-
-			// Get the existing list of Etudiants in the Etablissment
-			Etudiants etudiants = etablissment.getEtudiants();
-			if (etudiants == null) {
-				etudiants = new Etudiants();
-			}
-
-			// Add the new Etudiant to the list of Etudiants
-			etudiants.setEtudiant(etudiant);
-
-			// Set the updated Etudiants back to the Etablissment
-			etablissment.setEtudiants(etudiants);
-
-			// Add the new Etablissment to the list of Etablissments
-			etablissmentList.add(etablissment);
-
-			// Set the updated list of Etablissments back to the Etablissments
-			etablissments.setEtablissments(etablissmentList);
-
-			// Save the updated Etablissments back to the file
-			try (PrintWriter pw = new PrintWriter(file)) {
-				pw.print("");
-			}
-			marshaller.marshal(etablissments, new PrintWriter(new BufferedWriter(new FileWriter(file))));
-
-			System.out.println("Etudiant has been added successfully.");
+			// If no matching Etablissment is found, handle accordingly
+			System.out.println("No matching Etablissment found for RefEtablissment: " + etudiant.getRefEtablissment());
+			// Handle the case where no matching Etablissment is found
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-
-
 }

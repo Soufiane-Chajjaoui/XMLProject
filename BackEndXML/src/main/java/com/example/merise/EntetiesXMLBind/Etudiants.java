@@ -11,7 +11,7 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Etudiants {
 
-    @XmlElement
+    @XmlElement(name = "Etudiant")
     private List<Etudiant> etudiant = new ArrayList<Etudiant>();
 
     public Etudiants() {

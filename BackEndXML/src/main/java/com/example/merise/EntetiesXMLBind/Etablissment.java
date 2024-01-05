@@ -8,25 +8,64 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Etablissment {
 
-    @XmlAttribute(name = "idEtablissment" , required = true)
+
+    @XmlAttribute(name = "idEtablissment", required = true)
     @XmlID
-    private String idEtablissment ;
-    @XmlElement(name = "Etudiants" , required = true)
-    private Etudiants etudiants ;
-    @XmlElement(name = "Enseignants" , required = true)
-    private Enseignants enseignants ;
+    private String idEtablissment;
+
+    @XmlAttribute(name = "NomEtablissment", required = true)
+    private String nomEtablissment;
+
+    @XmlAttribute(name = "VileEtablissment", required = true)
+    private String villeEtablissment;
+
+    @XmlAttribute(name = "RefUniversite", required = true)
+    private String refUniversite;
+
+    @XmlElement(name = "Etudiants", required = true)
+    private Etudiants etudiants;
+
+    @XmlElement(name = "Enseignants", required = true)
+    private Enseignants enseignants;
 
     public Etablissment() {
     }
+
+    public Etablissment(String idEtablissment, String nomEtablissment, String villeEtablissment, String refUniversite) {
+        this.idEtablissment = idEtablissment;
+        this.nomEtablissment = nomEtablissment;
+        this.villeEtablissment = villeEtablissment;
+        this.refUniversite = refUniversite;
+    }
+
 
     public Etablissment(String idetablissment){
         this.idEtablissment = idetablissment ;
     }
 
-    public Etablissment(Etudiants etudiants) {
-        this.etudiants = etudiants;
+    public String getNomEtablissment() {
+        return nomEtablissment;
     }
 
+    public void setNomEtablissment(String nomEtablissment) {
+        this.nomEtablissment = nomEtablissment;
+    }
+
+    public String getVilleEtablissment() {
+        return villeEtablissment;
+    }
+
+    public void setVilleEtablissment(String villeEtablissment) {
+        this.villeEtablissment = villeEtablissment;
+    }
+
+    public String getRefUniversite() {
+        return refUniversite;
+    }
+
+    public void setRefUniversite(String refUniversite) {
+        this.refUniversite = refUniversite;
+    }
 
     public Etudiants getEtudiants() {
         return etudiants;
