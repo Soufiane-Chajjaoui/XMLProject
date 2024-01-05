@@ -56,7 +56,7 @@ public class EtudiantService {
 			List<Etablissment> etablissmentList = etablissments.getEtablissments();
 
 
-			for (Etablissment etablissment : etablissmentList) {
+			for (Etablissment etablissment : etablissmentList) { // isEmpty()
 
 				if (etudiant.getRefEtablissment() != null && etudiant.getRefEtablissment().equals(etablissment.getIdEtablissment())) {
 
@@ -64,7 +64,7 @@ public class EtudiantService {
 
 					if (etudiants == null) {
 						etudiants = new Etudiants();
-					}
+ 					}
 
 					etudiants.setEtudiant(etudiant);
 
@@ -72,13 +72,10 @@ public class EtudiantService {
 
 					etablissments.setEtablissments(etablissmentList);
 
-					try (PrintWriter pw = new PrintWriter(file)) {
-						pw.print("");
-					}
 					marshaller.marshal(etablissments, new PrintWriter(new BufferedWriter(new FileWriter(file))));
 
 					System.out.println("Etudiant has been added successfully.");
-					return;
+					return; // return car cette methode est return void
 				}
 			}
 

@@ -1,12 +1,12 @@
-package com.example.merise.EntetiesXMLBind;
+package com.example.merise.MCDToJaxB;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
 
-public class Person {
+ public class Person {
 
     private String idPerson;
-
-
     private String refEtablissment;
     private String prenom;
     private String nom;
