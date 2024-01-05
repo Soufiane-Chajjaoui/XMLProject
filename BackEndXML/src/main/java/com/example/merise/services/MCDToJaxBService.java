@@ -22,14 +22,17 @@ public class MCDToJaxBService {
                     "Safi, Rue 19", "Homme", "2003", "K1331331",
                     new Bac(TypeBac.SMB, "sss", "ss", "ss"),
                     new Condidature("idCon12", Arrays.asList(FiliereEnum.GENIE_INDUSTRIELLE, FiliereEnum.GENIE_INFORMATIQUE)));
+            if (file.length() == 0){
+                Etudiants etudiants = new Etudiants();
 
+            }
             Etudiants etudiants = new Etudiants();
             etudiants.setEtudiant(etudiant);
 
             Marshaller marshaller = context.createMarshaller();
 
             // Marshal to the XML file instead of printing to the console
-            marshaller.marshal(etudiants, System.out);
+            marshaller.marshal(etudiants, file);
 
         } catch (Exception e) {
             e.printStackTrace();
