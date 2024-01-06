@@ -1,23 +1,24 @@
 package com.example.merise.MCDToJaxB;
 
 import javax.xml.bind.annotation.*;
+import java.util.UUID;
 
 public class Person {
 
-    private String idPerson;
+    private UUID idPerson;
     private String prenom;
     private String nom;
     private String tele;
     private String email;
     private String address;
-    private String sex;
+    private SexEnum sex;
     private String dateNaissance;
 
     public Person() {
     }
 
-    public Person(String idPerson , String prenom, String nom, String tele, String email, String address, String sex, String dateNaissance) {
-        this.idPerson = idPerson;
+    public Person(UUID idPerson , String prenom, String nom, String tele, String email, String address, SexEnum sex, String dateNaissance) {
+        this.idPerson = UUID.randomUUID();
         this.prenom = prenom;
         this.nom = nom;
         this.tele = tele;
@@ -31,12 +32,12 @@ public class Person {
 
 
     @XmlAttribute(name = "idPerson", required = true)
-    @XmlID
-    public String getIdPerson() {
+//    @XmlID i can't add XmlID Because I used DataType UUID
+    public UUID getIdPerson() {
         return idPerson;
     }
 
-    public void setIdPerson(String id) {
+    public void setIdPerson(UUID id) {
         this.idPerson = id;
     }
 
@@ -86,11 +87,11 @@ public class Person {
     }
 
     @XmlElement(name = "sex", required = true)
-    public String getSex() {
+    public SexEnum getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(SexEnum sex) {
         this.sex = sex;
     }
 

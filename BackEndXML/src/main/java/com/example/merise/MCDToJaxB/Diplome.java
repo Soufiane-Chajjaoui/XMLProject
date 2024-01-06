@@ -6,47 +6,30 @@ import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Pattern;
 
 import javax.xml.bind.annotation.*;
+import java.util.UUID;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Diplome {
 
     @XmlAttribute(name = "idDeplome")
-    @XmlID
-    private String idDeplome;
+//    @XmlID n'est pas compatible avec UUID elle accorde just avec String
+    private UUID idDeplome;
     @XmlAttribute(name = "NoteDeplome")
     @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
     @DecimalMax(value = "20" , inclusive = true)
     @DecimalMin(value = "10" , inclusive = true)
     private double noteDeplome;
     @XmlElement(name = "NoteS1")
-    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
-    @DecimalMax(value = "20" , inclusive = true)
-    @DecimalMin(value = "10" , inclusive = true)
     private double notes1 ;
     @XmlElement(name = "NoteS2")
-    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
-    @DecimalMax(value = "20" , inclusive = true)
-    @DecimalMin(value = "10" , inclusive = true)
     private double notes2 ;
     @XmlElement(name = "NoteS3")
-    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
-    @DecimalMax(value = "20" , inclusive = true)
-    @DecimalMin(value = "10" , inclusive = true)
     private double notes3 ;
     @XmlElement(name = "NoteS4")
-    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
-    @DecimalMax(value = "20" , inclusive = true)
-    @DecimalMin(value = "10" , inclusive = true)
     private double notes4 ;
     @XmlElement(name = "ValidationFirstYear")
-    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
-    @DecimalMax(value = "20" , inclusive = true)
-    @DecimalMin(value = "10" , inclusive = true)
     private double validationFirstYear;
     @XmlElement(name = "ValidationSecondYear")
-    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
-    @DecimalMax(value = "20" , inclusive = true)
-    @DecimalMin(value = "10" , inclusive = true)
     private double validationSecondYear;
     @XmlElement(name = "NbretudiantsFirstYear")
     private int NbretudiantsFirstYear ;
@@ -61,7 +44,6 @@ public class Diplome {
     private String ImageReleve;
 
     @XmlElement(name = "ImageDeplome")
-    @Pattern(regexp = ".*\\.(jpg|jpeg|png|gif|bmp)$", message = "Invalid image file format")
     private String ImageDeplome;
 
     @XmlElement(name = "Mention")
@@ -77,7 +59,7 @@ public class Diplome {
     public Diplome() {
     }
 
-    public Diplome(String idDeplome, double noteDeplome, double notes1
+    public Diplome(UUID idDeplome, double noteDeplome, double notes1
             , double notes2, double notes3, double notes4
             , double validationFirstYear, double validationSecondYear
             , int nbretudiantsFirstYear, int nbretudiantsSecondYear
@@ -125,12 +107,12 @@ public class Diplome {
         this.typeDiplome = typeDiplome;
     }
 
-    public String getIdDeplome() {
+    public UUID getIdDeplome() {
         return idDeplome;
     }
 
-    public void setIdDeplome(String idDeplome) {
-        this.idDeplome = idDeplome;
+    public void setIdDeplome() {
+        this.idDeplome = UUID.randomUUID();
     }
 
     public double getNoteDeplome() {

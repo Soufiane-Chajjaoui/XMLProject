@@ -15,7 +15,7 @@ public class Etudiants {
     public Etudiants() {
     }
 
-    public List<Etudiant> getEtudiant() {
+    public List<Etudiant> getEtudiants() {
         return etudiant;
     }
 

@@ -2,6 +2,7 @@ package com.example.merise.MCDToJaxB;
 
 
 import javax.xml.bind.annotation.*;
+import java.util.UUID;
 
 @XmlRootElement(name = "Etudiant")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -18,7 +19,7 @@ public class Etudiant extends Person {
     public Etudiant() {
     }
 
-    public Etudiant(String idPerson, String prenom, String nom, String tele, String email, String address, String sex, String dateNaissance, String cne, Bac bac,
+    public Etudiant(UUID idPerson, String prenom, String nom, String tele, String email, String address, SexEnum sex, String dateNaissance, String cne, Bac bac,
                     Condidature condidature , Diplome diplome) {
         super(idPerson, prenom, nom, tele, email, address, sex, dateNaissance);
         this.cne = cne;
