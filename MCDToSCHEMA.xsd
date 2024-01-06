@@ -69,7 +69,7 @@
       <xs:element ref="FiliereDiplome" minOccurs="0"/>
       <xs:element name="TypeDiplome" type="typeDiplome" minOccurs="0"/>
     </xs:sequence>
-    <xs:attribute name="idDeplome" type="xs:ID"/>
+    <xs:attribute name="idDeplome" type="xs:string"/>
     <xs:attribute name="NoteDeplome" type="xs:double" use="required"/>
   </xs:complexType>
 
