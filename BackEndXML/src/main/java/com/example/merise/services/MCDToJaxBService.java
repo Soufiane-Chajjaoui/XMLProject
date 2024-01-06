@@ -5,8 +5,12 @@ import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.SchemaOutputResolver;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.Result;
+import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 
 @Service
@@ -17,7 +21,7 @@ public class MCDToJaxBService {
     public void addStudant(Etudiant etudiant2) {
         File file = new File(XML_FILE_PATH);
         try {
-            JAXBContext context = JAXBContext.newInstance(Etudiants.class);
+            JAXBContext context = JAXBContext.newInstance(Bac.class, Etudiant.class, Etudiants.class, FiliereDiplome.class);
             Marshaller marshaller = context.createMarshaller();
             Etudiants etudiants ;
 
@@ -42,7 +46,16 @@ public class MCDToJaxBService {
             etudiants.setEtudiant(etudiant);
 
             marshaller.marshal(etudiants, file); // for Serialize Object instanceOf Etudiants
-
+            context.generateSchema(
+                    new SchemaOutputResolver() {
+                        @Override
+                        public Result createOutput(String namespaceUri, String suggestedFileName) throws IOException {
+                            File fileSchema = new File("D:\\laragon\\www\\ProjetXML\\MCDToSCHEMA.xml");
+                            StreamResult streamResult = new StreamResult(fileSchema);
+                            return streamResult;
+                        }
+                    }
+            );
         } catch (Exception e) {
             e.printStackTrace();
         }
