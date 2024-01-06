@@ -36,7 +36,7 @@ public class MCDToJaxBService {
             }
 
             Etudiant etudiant = new Etudiant(UUID.randomUUID(), "Soufian", "chajjaoui", "0607025329", "schajjaoui@gmail.com",
-                    "Safi, Rue 19", SexEnum.HOMME, "2003", "K1331331"
+                    "Safi, Rue 19", SexEnum.HOMME, "2003", "K1331331131"
                     , new Bac(TypeBac.PC, "2021", "14.36", "12.46" , Mention.BIEN)
                     , new Condidature(UUID.randomUUID().toString(), Arrays.asList(FiliereEnum.GENIE_INDUSTRIELLE, FiliereEnum.GENIE_INFORMATIQUE))
                     , new Diplome(UUID.randomUUID() , 12.74 , 12.30 , 12.47 , 13.01 , 12.70
@@ -54,6 +54,16 @@ public class MCDToJaxBService {
             }
             etudiants.setEtudiant(etudiant);
             marshaller.marshal(etudiants, file); // for Serialize Object instanceOf Etudiants
+
+            // Marshal Etudiants to XML
+//            StringWriter stringWriter = new StringWriter();
+//            marshaller.marshal(etudiants, stringWriter);
+//            String xmlString = "<?xml-stylesheet type=\"text/xsl\" href=\"StyleSheet-ESTS.xsl\"?>" + stringWriter.toString();
+//
+//            // Write the XML string to the file
+//            try (FileWriter fileWriter = new FileWriter(file)) {
+//                fileWriter.write(xmlString);
+//            }
 
             return Optional.of(etudiant) ;
 //            pour genere Schema a traver des classes java avec Annotation Xml

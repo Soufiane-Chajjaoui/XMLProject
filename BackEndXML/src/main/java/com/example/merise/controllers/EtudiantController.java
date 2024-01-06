@@ -26,11 +26,12 @@ public class EtudiantController {
 	@CrossOrigin
 
 	public ResponseEntity<Optional<Etudiant>> addEtudiant(Etudiant etudiant){
-		if(Studantservice.addStudant(etudiant).isPresent()){
-			return ResponseEntity.status(HttpStatus.CREATED).body(Studantservice.addStudant(etudiant));
-		}
+		Optional<Etudiant> addedEtudiant = Studantservice.addStudant(etudiant);
 
+		if (addedEtudiant.isPresent()) {
+			return ResponseEntity.status(HttpStatus.CREATED).body(addedEtudiant);
+		}
 		// Return ResponseEntity with the entire Optional<Etudiant> as the response body
-		return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(Optional.empty());
 	}
 }

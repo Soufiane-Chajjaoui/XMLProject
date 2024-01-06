@@ -65,7 +65,7 @@ public class Diplome {
             , int nbretudiantsFirstYear, int nbretudiantsSecondYear
             , int order, String imageReleve, String imageDeplome
             , Mention mention, FiliereDiplome filiere, TypeDiplome typeDiplome) {
-        this.idDeplome = idDeplome;
+        this.idDeplome = UUID.randomUUID();
         this.noteDeplome = noteDeplome;
         this.notes1 = notes1;
         this.notes2 = notes2;

@@ -1,9 +1,6 @@
 package com.example.merise.MCDToJaxB;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TypeDiplome {
@@ -11,7 +8,7 @@ public class TypeDiplome {
     @XmlAttribute(name = "idTypeDiplome")
     private String idTypeDiplome ;
 
-    @XmlElement(name = "TypeDiplome")
+    @XmlValue
     private TypeDiplomeEnum typeDiplome ;
 
     public TypeDiplome() {
