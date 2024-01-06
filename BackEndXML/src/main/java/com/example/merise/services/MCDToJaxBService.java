@@ -3,12 +3,15 @@ package com.example.merise.services;
 import com.example.merise.MCDToJaxB.*;
 import org.springframework.stereotype.Service;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.SchemaOutputResolver;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.Result;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -17,7 +20,7 @@ import java.util.Arrays;
 public class MCDToJaxBService {
 
     private static final String XML_FILE_PATH = "D:\\laragon\\www\\ProjetXML\\EST.xml";
-
+    private static final String XSD_FILE_PATH = "D:\\laragon\\www\\ProjetXML\\MCDToSCHEMA.xml" ;
     public void addStudant(Etudiant etudiant2) {
         File file = new File(XML_FILE_PATH);
         try {
@@ -57,6 +60,22 @@ public class MCDToJaxBService {
                     }
             );
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean isValidEtudiant(Etudiant etudiant){
+        try {
+            // Load Schema for Validation
+            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = schemaFactory.newSchema(new File(XSD_FILE_PATH));
+
+            // Create JaxBContext for Etudiant
+            JAXBContext context = JAXBContext.newInstance(Etudiant.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            unmarshaller.setSchema(schema);
+            unmarshaller.setEventHandler(new MyValidationEventHandlere());
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
