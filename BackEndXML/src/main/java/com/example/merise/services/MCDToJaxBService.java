@@ -6,14 +6,10 @@ import org.springframework.stereotype.Service;
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.SchemaOutputResolver;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.Result;
-import javax.xml.transform.stream.StreamResult;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 
 @Service
@@ -26,6 +22,8 @@ public class MCDToJaxBService {
         try {
             JAXBContext context = JAXBContext.newInstance(Bac.class, Etudiant.class, Etudiants.class, FiliereDiplome.class);
             Marshaller marshaller = context.createMarshaller();
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = sf.newSchema(new File(XSD_FILE_PATH));
             Etudiants etudiants ;
 
 
@@ -33,6 +31,8 @@ public class MCDToJaxBService {
                 etudiants = new Etudiants();
             }else {
                 Unmarshaller unmarshaller = context.createUnmarshaller(); // faactory get Unmarshaller object
+//                unmarshaller.setSchema(schema); Add schema in file xml for validation
+//                unmarshaller.setEventHandler(new MyValidationEventHandlere()); set Handler
                 etudiants = (Etudiants) unmarshaller.unmarshal(file); // deserialize
             }
 
@@ -46,38 +46,27 @@ public class MCDToJaxBService {
                     , new FiliereDiplome("idFiliereDip2" , FiliereEnum.GENIE_INFORMATIQUE)
                     , new TypeDiplome("idtypeDip1" , TypeDiplomeEnum.DUT))
             );
-            etudiants.setEtudiant(etudiant);
 
-            marshaller.marshal(etudiants, file); // for Serialize Object instanceOf Etudiants
-            context.generateSchema(
-                    new SchemaOutputResolver() {
-                        @Override
-                        public Result createOutput(String namespaceUri, String suggestedFileName) throws IOException {
-                            File fileSchema = new File("D:\\laragon\\www\\ProjetXML\\MCDToSCHEMA.xml");
-                            StreamResult streamResult = new StreamResult(fileSchema);
-                            return streamResult;
-                        }
-                    }
-            );
+
+                etudiants.setEtudiant(etudiant);
+                marshaller.marshal(etudiants, file); // for Serialize Object instanceOf Etudiants
+
+//            context.generateSchema(
+//                    new SchemaOutputResolver() {
+//                        @Override
+//                        public Result createOutput(String namespaceUri, String suggestedFileName) throws IOException {
+//                            File fileSchema = new File("D:\\laragon\\www\\ProjetXML\\MCDToSCHEMA.xml");
+//                            StreamResult streamResult = new StreamResult(fileSchema);
+//                            return streamResult;
+//                        }
+//                    }
+//            );
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private boolean isValidEtudiant(Etudiant etudiant){
-        try {
-            // Load Schema for Validation
-            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = schemaFactory.newSchema(new File(XSD_FILE_PATH));
 
-            // Create JaxBContext for Etudiant
-            JAXBContext context = JAXBContext.newInstance(Etudiant.class);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            unmarshaller.setSchema(schema);
-            unmarshaller.setEventHandler(new MyValidationEventHandlere());
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+
 }
