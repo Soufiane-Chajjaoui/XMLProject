@@ -38,8 +38,8 @@ public class MCDToJaxBService {
                     new Bac(TypeBac.PC, "2021", "14.36", "12.46" , Mention.BIEN),
                     new Condidature("idCon12", Arrays.asList(FiliereEnum.GENIE_INDUSTRIELLE, FiliereEnum.GENIE_INFORMATIQUE))
                     , new Diplome("idDip1" , 12.74 , 12.37 , 12.47 , 13.01 , 12.70
-                    , 12.40 , 12.70 , 160 , 100
-                    , 93 , "assets/Releve.png" , "assets/profileImage.png", Mention.ASSEZ_BIEN
+                    , 1244.40 , 12.70 , 160 , 100
+                    , 93 , "assets/Releve.txt" , "assets/profileImage.txt", Mention.ASSEZ_BIEN
                     , new FiliereDiplome("idFiliereDip2" , FiliereEnum.GENIE_INFORMATIQUE)
                     , new TypeDiplome("idtypeDip1" , TypeDiplomeEnum.DUT))
             );

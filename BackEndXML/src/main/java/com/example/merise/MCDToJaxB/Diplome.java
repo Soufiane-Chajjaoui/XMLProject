@@ -1,26 +1,52 @@
 package com.example.merise.MCDToJaxB;
 
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Pattern;
+
 import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Diplome {
 
     @XmlAttribute(name = "idDeplome")
-//    @XmlID
+    @XmlID
     private String idDeplome;
     @XmlAttribute(name = "NoteDeplome")
+    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
+    @DecimalMax(value = "20" , inclusive = true)
+    @DecimalMin(value = "10" , inclusive = true)
     private double noteDeplome;
     @XmlElement(name = "NoteS1")
+    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
+    @DecimalMax(value = "20" , inclusive = true)
+    @DecimalMin(value = "10" , inclusive = true)
     private double notes1 ;
     @XmlElement(name = "NoteS2")
+    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
+    @DecimalMax(value = "20" , inclusive = true)
+    @DecimalMin(value = "10" , inclusive = true)
     private double notes2 ;
     @XmlElement(name = "NoteS3")
+    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
+    @DecimalMax(value = "20" , inclusive = true)
+    @DecimalMin(value = "10" , inclusive = true)
     private double notes3 ;
     @XmlElement(name = "NoteS4")
+    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
+    @DecimalMax(value = "20" , inclusive = true)
+    @DecimalMin(value = "10" , inclusive = true)
     private double notes4 ;
     @XmlElement(name = "ValidationFirstYear")
+    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
+    @DecimalMax(value = "20" , inclusive = true)
+    @DecimalMin(value = "10" , inclusive = true)
     private double validationFirstYear;
     @XmlElement(name = "ValidationSecondYear")
+    @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
+    @DecimalMax(value = "20" , inclusive = true)
+    @DecimalMin(value = "10" , inclusive = true)
     private double validationSecondYear;
     @XmlElement(name = "NbretudiantsFirstYear")
     private int NbretudiantsFirstYear ;
@@ -31,9 +57,11 @@ public class Diplome {
     private int order;
 
     @XmlElement(name = "ImageReleve")
+    @Pattern(regexp = ".*\\.(jpg|jpeg|png|gif|bmp)$", message = "Invalid image file format")
     private String ImageReleve;
 
     @XmlElement(name = "ImageDeplome")
+    @Pattern(regexp = ".*\\.(jpg|jpeg|png|gif|bmp)$", message = "Invalid image file format")
     private String ImageDeplome;
 
     @XmlElement(name = "Mention")
