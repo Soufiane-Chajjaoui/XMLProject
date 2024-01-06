@@ -22,8 +22,7 @@
             <xs:element name="Enseignants">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="Enseignant" maxOccurs="unbounded" type="TypeEnseignant" minOccurs="1">
-                        </xs:element>
+                        <xs:element name="Enseignant" maxOccurs="unbounded" type="TypeEnseignant" minOccurs="1"></xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>

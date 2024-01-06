@@ -75,6 +75,7 @@ public class MCDToJaxBService {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             unmarshaller.setSchema(schema);
             unmarshaller.setEventHandler(new MyValidationEventHandlere());
+
         }catch (Exception e){
             e.printStackTrace();
         }

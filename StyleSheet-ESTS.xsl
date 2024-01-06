@@ -39,12 +39,18 @@
                            email: $("#email").val(),
                            tele: $("#tele").val(),
                            address: $("#address").val(),
-                           filiere: $("#filiere").val(),
-                           sexe: $("#Sexe").val(),
-                           regional: $("#regional").val(),
-                           national: $("#national").val(),
-                           datenaiss: $("#datenaiss").val()
+                           sex: $("#Sexe").val(),
+                           dateNaissance: $("#datenaiss").val(),
+                           cne: $("#cne").val(),
+                           bac: {
+                                regional: $("#Regional").val(),
+                                national: $("#National").val(),
+                                specBac : $("#filiere").val(),
+                                dateBac : "2021"
+                           },
+                           refEtablissment : $("#idetablissment").val()
                            };
+                           
                            
                            console.log(formData) ;
                            
@@ -86,10 +92,16 @@
                         </ul>
                     </div>
                 </nav>
-                <div class="container mt-4">
+                <div class="container mt-4 mb-4">
                     <!-- Etablissments Card -->
                     <div class="card" id="etablissmentsCard">
-                        <div class="card-header">List de Etablissments</div>
+                        
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">List de Etablissments</h3>
+                                <button type="button" class="btn btn-outline-secondary">Ajoute Etablissment</button>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <table class="table table-bordered table-hover">
                                 <thead>
@@ -119,7 +131,12 @@
                     
                     <!-- Enseignants Card -->
                     <div class="card" id="enseignantsCard">
-                        <div class="card-header">List de Enseignants</div>
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">List de Enseignants</h3>
+                                <button type="button" class="btn btn-outline-secondary">Ajoute Enseignant</button>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <table class="table table-bordered table-hover">
                                 <thead>
@@ -160,7 +177,12 @@
                     
                     <!-- Etudiants Card -->
                     <div class="card" id="etudiantsCard">
-                        <div class="card-header">List de Etudiants</div>
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">List de Etudiants</h3>
+                                <button type="button" class="btn btn-outline-secondary">Ajoute Etudiant</button>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <!-- Etudiants Table -->
                             <!-- Table Content -->
@@ -169,7 +191,11 @@
                     
                     <!-- Inscription Card -->
                     <div class="card" id="inscriptionCard">
-                        <div class="card-header">Inscription Form</div>
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                Inscription Form
+                            </h3>
+                        </div>
                         <div class="card-body">
                             <form>
                                 <div class="form-row">
@@ -209,6 +235,24 @@
                                             <option value="BAC SCIENCES MATHÉMATIQUES A.">BAC SCIENCES MATHÉMATIQUES A.</option>
                                         </select>
                                     </div>
+                                    <div class="col-md-3 mb3">
+                                        <label for="national">CNE</label>
+                                        <input type="text" maxlength="10"  class="form-control" id="cne" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-3 mb3">
+                                        <label for="regional">Regional</label>
+                                        <input type="number" min="6" max="20" class="form-control" id="Regional"/>
+                                    </div>
+                                    <div class="col-md-3 mb3">
+                                        <label for="national">National</label>
+                                        <input type="number" max="20" min="10" class="form-control" id="National"/>
+                                    </div>
+                                    <div class="col-md-3 mb3">
+                                        <label for="datenaiss">Date de Naissance</label>
+                                        <input type="date" class="form-control" id="datenaiss"/>
+                                    </div>
                                     <div class="col-md-3 mb-3">
                                         <label for="sexe">Sexe</label>
                                         <select class="custom-select" id="Sexe">
@@ -218,17 +262,23 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="col-md-3 mb3">
-                                        <label for="regional">Regional</label>
-                                        <input type="text" class="form-control" id="regional"/>
+                                    <div class="col-md-6 mb3">
+                                        <label for="etablissment">Etablissment</label>
+                                        <select class="custom-select" id="idetablissment">
+                                            <xsl:for-each select="/Universite/Etablissments/Etablissment">
+                                                <option value="{@idEtablissment}">
+                                                    <xsl:value-of select="@NomEtablissment"/>
+                                                </option>
+                                            </xsl:for-each>
+                                            
+                                        </select>
                                     </div>
-                                    <div class="col-md-3 mb3">
-                                        <label for="national">National</label>
-                                        <input type="text" class="form-control" id="national"/>
-                                    </div>
-                                    <div class="col-md-3 mb3">
-                                        <label for="datenaiss">Date de Naissance</label>
-                                        <input type="date" class="form-control" id="datenaiss"/>
+                                    <div class="col-md-6 mb3">
+                                        <label for="filiere">Filiere</label>
+                                        <select class="custom-select" id="filiere">
+                                            <option value="homme">Homme</option>
+                                            <option value="femme">Femme</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <hr></hr>
