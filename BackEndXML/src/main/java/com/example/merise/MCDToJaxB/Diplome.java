@@ -2,12 +2,11 @@ package com.example.merise.MCDToJaxB;
 
 import javax.xml.bind.annotation.*;
 
-@XmlRootElement(name = "Diplome")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Diplome {
 
     @XmlAttribute(name = "idDeplome")
-    @XmlID
+//    @XmlID
     private String idDeplome;
     @XmlAttribute(name = "NoteDeplome")
     private double noteDeplome;
@@ -41,10 +40,62 @@ public class Diplome {
     private Mention mention;
 
     @XmlElement(name = "FiliereDiplome")
-    private FiliereDiplome filiere;
+    private FiliereDiplome someOtherNameForFiliereDiplome;
+
 
     @XmlElement(name = "TypeDiplome")
     private TypeDiplome typeDiplome;
+
+    public Diplome() {
+    }
+
+    public Diplome(String idDeplome, double noteDeplome, double notes1
+            , double notes2, double notes3, double notes4
+            , double validationFirstYear, double validationSecondYear
+            , int nbretudiantsFirstYear, int nbretudiantsSecondYear
+            , int order, String imageReleve, String imageDeplome
+            , Mention mention, FiliereDiplome filiere, TypeDiplome typeDiplome) {
+        this.idDeplome = idDeplome;
+        this.noteDeplome = noteDeplome;
+        this.notes1 = notes1;
+        this.notes2 = notes2;
+        this.notes3 = notes3;
+        this.notes4 = notes4;
+        this.validationFirstYear = validationFirstYear;
+        this.validationSecondYear = validationSecondYear;
+        NbretudiantsFirstYear = nbretudiantsFirstYear;
+        NbretudiantsSecondYear = nbretudiantsSecondYear;
+        this.order = order;
+        ImageReleve = imageReleve;
+        ImageDeplome = imageDeplome;
+        this.mention = mention;
+        this.someOtherNameForFiliereDiplome = filiere;
+        this.typeDiplome = typeDiplome;
+    }
+
+    public Mention getMention() {
+        return mention;
+    }
+
+    public void setMention(Mention mention) {
+        this.mention = mention;
+    }
+
+    public FiliereDiplome getFiliereDiplome() {
+        return someOtherNameForFiliereDiplome;
+    }
+
+    public void setFiliereDiplome(FiliereDiplome filiereDiplome) {
+        this.someOtherNameForFiliereDiplome = filiereDiplome;
+    }
+
+    public TypeDiplome getTypeDiplome() {
+        return typeDiplome;
+    }
+
+    public void setTypeDiplome(TypeDiplome typeDiplome) {
+        this.typeDiplome = typeDiplome;
+    }
 
     public String getIdDeplome() {
         return idDeplome;

@@ -21,16 +21,24 @@ public class MCDToJaxBService {
             Marshaller marshaller = context.createMarshaller();
             Etudiants etudiants ;
 
-            Etudiant etudiant = new Etudiant("id1", "Soufian", "chajjaoui", "0607025329", "schajjaoui@gmail.com",
-                    "Safi, Rue 19", "Homme", "2003", "K1331331",
-                    new Bac(TypeBac.SMB, "sss", "ss", "ss"),
-                    new Condidature("idCon12", Arrays.asList(FiliereEnum.GENIE_INDUSTRIELLE, FiliereEnum.GENIE_INFORMATIQUE)));
+
             if (file.length() == 0){
                 etudiants = new Etudiants();
             }else {
                 Unmarshaller unmarshaller = context.createUnmarshaller(); // faactory get Unmarshaller object
                 etudiants = (Etudiants) unmarshaller.unmarshal(file); // deserialize
             }
+
+            Etudiant etudiant = new Etudiant("id", "Soufian", "chajjaoui", "0607025329", "schajjaoui@gmail.com",
+                    "Safi, Rue 19", "Homme", "2003", "K1331331",
+                    new Bac(TypeBac.PC, "2021", "14.36", "12.46" , Mention.BIEN),
+                    new Condidature("idCon12", Arrays.asList(FiliereEnum.GENIE_INDUSTRIELLE, FiliereEnum.GENIE_INFORMATIQUE))
+                    , new Diplome("idDip1" , 12.74 , 12.37 , 12.47 , 13.01 , 12.70
+                    , 12.40 , 12.70 , 160 , 100
+                    , 93 , "assets/Releve.png" , "assets/profileImage.png", Mention.ASSEZ_BIEN
+                    , new FiliereDiplome("idFiliereDip2" , FiliereEnum.GENIE_INFORMATIQUE)
+                    , new TypeDiplome("idtypeDip1" , TypeDiplomeEnum.DUT))
+            );
             etudiants.setEtudiant(etudiant);
 
             marshaller.marshal(etudiants, file); // for Serialize Object instanceOf Etudiants

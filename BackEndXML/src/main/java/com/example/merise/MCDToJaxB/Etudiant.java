@@ -1,26 +1,30 @@
 package com.example.merise.MCDToJaxB;
 
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "Etudiant")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Etudiant extends Person {
-
+    @XmlAttribute(name = "cne", required = true)
     private String cne;
+    @XmlElement(name = "Bac", required = true)
     private Bac bac;
-
+    @XmlElement(name = "Condidature")
     private Condidature condidature;
+    @XmlElement(name = "Diplome")
+    private Diplome diplome ;
 
     public Etudiant() {
     }
 
-    public Etudiant(String idPerson, String prenom, String nom, String tele, String email, String address, String sex, String dateNaissance, String cne, Bac bac, Condidature condidature) {
+    public Etudiant(String idPerson, String prenom, String nom, String tele, String email, String address, String sex, String dateNaissance, String cne, Bac bac,
+                    Condidature condidature , Diplome diplome) {
         super(idPerson, prenom, nom, tele, email, address, sex, dateNaissance);
         this.cne = cne;
         this.bac = bac;
         this.condidature = condidature;
+        this.diplome = diplome;
     }
 
     public Etudiant(String cne, Bac bac, Condidature condidature) {
@@ -32,7 +36,6 @@ public class Etudiant extends Person {
 
 
 
-    @XmlElement(name = "Condidature")
     public Condidature getCondidature() {
         return condidature;
     }
@@ -41,7 +44,6 @@ public class Etudiant extends Person {
         this.condidature = condidature;
     }
 
-    @XmlAttribute(name = "cne", required = true)
     public String getCne() {
         return cne;
     }
@@ -50,7 +52,6 @@ public class Etudiant extends Person {
         this.cne = CNE;
     }
 
-    @XmlElement(name = "Bac", required = true)
     public Bac getBac() {
         return bac;
     }

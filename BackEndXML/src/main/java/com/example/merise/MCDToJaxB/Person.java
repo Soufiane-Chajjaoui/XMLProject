@@ -27,8 +27,7 @@ public class Person {
         this.dateNaissance = dateNaissance;
     }
 
-    public Person(String idPerson, String refEtablissment, String prenom, String nom, String tele, String email, String address, String sex, String dateNaissance) {
-    }
+
 
 
     @XmlAttribute(name = "idPerson", required = true)
@@ -37,8 +36,8 @@ public class Person {
         return idPerson;
     }
 
-    public void setIdPerson() {
-        this.idPerson = getEmail();
+    public void setIdPerson(String id) {
+        this.idPerson = id;
     }
 
 

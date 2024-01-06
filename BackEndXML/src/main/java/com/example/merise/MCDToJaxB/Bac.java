@@ -10,15 +10,25 @@ public class Bac {
     private String dateBac;
     private String national;
     private String regional;
-
+    private Mention mention;
     public Bac() {
     }
 
-    public Bac(TypeBac specBac, String dateBac, String national, String regional) {
+    public Bac(TypeBac specBac, String dateBac, String national, String regional , Mention m) {
         this.specBac = specBac;
         this.dateBac = dateBac;
         this.national = national;
         this.regional = regional;
+        this.mention = m ;
+    }
+
+    @XmlElement(name = "Mention")
+    public Mention getMention() {
+        return mention;
+    }
+
+    public void setMention(Mention mention) {
+        this.mention = mention;
     }
 
     @XmlElement(name = "SpecBac", required = true)

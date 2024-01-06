@@ -14,6 +14,14 @@ public class TypeDiplome {
     @XmlElement(name = "TypeDiplome")
     private TypeDiplomeEnum typeDiplome ;
 
+    public TypeDiplome() {
+    }
+
+    public TypeDiplome(String idTypeDiplome, TypeDiplomeEnum typeDiplome) {
+        this.idTypeDiplome = idTypeDiplome;
+        this.typeDiplome = typeDiplome;
+    }
+
     public String getIdTypeDiplome() {
         return idTypeDiplome;
     }
