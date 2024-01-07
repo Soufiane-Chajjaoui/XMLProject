@@ -9,6 +9,9 @@
                 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" />
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" />
+                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+                    
                 <script>
                     $(document).ready(function(){
                     $(".card").hide();
@@ -31,9 +34,52 @@
                     });
                     
                     $(".delete-row").on("click", function () {
+                    // Store reference to 'this' for later use
+                    var $row = $(this).closest('tr');
+                    var idPerson = $row.attr('id');
+                    
+                    $.confirm({
+                    title: 'Confirmation',
+                    content: 'Do you really want to perform this action?',
+                    buttons: {
+                    confirm: function () {
                     // Find the parent row and remove it
-                    $(this).closest('tr').remove();
-                    })
+                    $row.remove();
+                    
+                    // Send AJAX request to delete data on the server
+                    $.ajax({
+                    type: "DELETE",
+                    url: "http://localhost:8080/Etudiants/" + idPerson,
+                    contentType: "application/json",
+                    success: function (response) {
+                    iziToast.success({
+                    title: 'ete bien',
+                    message: `${response.nom} has been removed`,
+                    position: 'bottomRight',
+                    theme: 'light',
+                    timeout: 7000,
+                    progressBarColor: '#3498db',
+                    });
+                    },
+                    error: function (xhr, status, error) {
+                    iziToast.warning({
+                    title: 'Caution',
+                    message: xhr.responseText,
+                    });
+                    // You can perform additional actions here if needed
+                    }
+                    });
+                    },
+                    cancel: function () {
+                    // Optional: Handle cancel action
+                    }
+                    }
+                    });
+                    });
+                    
+                    
+                    
+                    //Form Inscription
                     $("form").submit(function (event) {
                     // Prevent the default form submission
                     event.preventDefault();
@@ -78,8 +124,7 @@
                     };
                     
                     
-                    console.log(formData) ;
-                    
+                     
                     $.ajax({
                     type: "POST",
                     url: "http://localhost:8080/Etudiants", // Replace with your actual API endpoint
@@ -94,8 +139,8 @@
                     timeout: 7000, // Time in milliseconds to auto-close the notification (set to 0 to disable auto-close)
                     progressBarColor: '#3498db', // Color of the progress bar
                     });
+                    $("form")[0].reset();  // Reset the form
                     console.log("Data sent successfully:", response);
-                    // You can perform additional actions here if needed
                     },
                     error: function (xhr, status, error) {
                     iziToast.warning({
@@ -162,7 +207,7 @@
                                             <td><xsl:value-of select="address"/></td>
                                             <td><xsl:for-each select="Condidature/Choix">
                                                 <xsl:value-of select="."/>
-                                                <xsl:if test="position() &lt; last()"> + </xsl:if>
+                                                <xsl:if test="position() &lt; last()"> , </xsl:if>
                                             </xsl:for-each></td>
                                             <td class="text-secondary">
                                                 <i class="fas fa-pen"></i>
