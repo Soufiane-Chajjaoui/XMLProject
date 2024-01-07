@@ -14,6 +14,7 @@
                     
                 <script>
                     $(document).ready(function(){
+                    var idPersonVal ; // variable local for edit Etudiant assign idPerson
                     $(".card").hide();
                     $("#etudiantsCard").show();
                     // jQuery function to handle click on the navbar brand
@@ -33,6 +34,8 @@
                     $("#" + linkText + "Card").show();
                     });
                     
+                    
+                    // delete etudiant
                     $(".delete-row").on("click", function () {
                     // Store reference to 'this' for later use
                     var $row = $(this).closest('tr');
@@ -54,7 +57,7 @@
                     success: function (response) {
                     iziToast.success({
                     title: 'ete bien',
-                    message: `${response.nom} has been removed`,
+                    message: `${response.messageText} has been removed`,
                     position: 'bottomRight',
                     theme: 'light',
                     timeout: 7000,
@@ -122,9 +125,7 @@
                     }
                     
                     };
-                    
-                    
-                     
+
                     $.ajax({
                     type: "POST",
                     url: "http://localhost:8080/Etudiants", // Replace with your actual API endpoint
@@ -155,17 +156,85 @@
                     }
                     });
                     });
+                    
+                    
+                    // Update Etudiant
+                    $('.fa-pen').on('click', function () {
+                    // Get the values from the corresponding row
+                    idPersonVal = $(this).closest('tr').attr('id');
+                    var nom = $(this).closest('tr').find('td:nth-child(2)').text();
+                    
+                    
+                    
+                    // Set the values in the modal input fields
+                    $('#editNom').val(nom);
+                    // Set other input fields as needed
+                    
+                    // Show the modal
+                    $('#editEtudiantModal').modal('show');
+                    });
+                    
+                    // Click event for Save changes button
+                    $('#saveChangesBtn').on('click', function () {
+                    var nom = $("#editNom").val();
+                    
+                    var editedTd = $(`#${idPersonVal} td:nth-child(2)`);
+                    editedTd.addClass('edited');
+                    
+                    // Send AJAX request to delete data on the server
+                    $.ajax({
+                    type: "PATCH",
+                    url:  `http://localhost:8080/Etudiants/${idPersonVal}/${nom}`,
+                    contentType: "application/json", 
+                    success: function (response) {
+                    iziToast.success({ 
+                    title: 'ete bien modifie',
+                    position: 'bottomRight',
+                    theme: 'light',
+                    timeout: 7000,
+                    progressBarColor: '#3498db',
+                    });
+                    },
+                    error: function (xhr, status, error) {
+                    iziToast.warning({
+                    title: 'Caution',
+                    message: `${xhr.responseText}`,
+                    });
+                    // You can perform additional actions here if needed
+                    }
+                    });
+                    
+                    $(`#${idPersonVal}`).fadeIn(1000);
+                    
+                    $(`#${idPersonVal} td:nth-child(2)`).text(nom);
+                    
+                    
+                    editedTd.removeClass('edited');
+                    // Close the modal
+                    $('#editEtudiantModal').modal('hide');
+    
+                    });
                     });
                 </script>
                 <style>
                     a , i {
                     cursor: pointer;
                     }
+                    /* Add some style for the edited class */
+                    .edited {
+                    background-color: #FFFFE0; /* Light yellow background */
+                    transition: background-color 0.5s; /* Smooth transition effect */
+                    }
+                    
                 </style>
             </head>
             <body>
                 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                    <a class="navbar-brand" href="#">ESTS</a>
+                    <a class="navbar-brand m-0" href="#">
+                        <div style="width: 80px; heigth : 120px">
+                            <img src="Logo_ESTS.png" width="100%" height="100%"></img>
+                        </div>
+                    </a>
                     <div class="p-3">
                         <ul class="nav navbar-nav">
                             <li class="nav-item"><a class="nav-link active" rel="noopener noreferrer" >Etudiants</a></li>
@@ -173,6 +242,28 @@
                         </ul>
                     </div>
                 </nav>
+                <!-- Modal -->
+                <div class="modal fade" id="editEtudiantModal" tabindex="-1" aria-labelledby="editEtudiantModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editEtudiantModalLabel">Edit Etudiant</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Input fields for editing Etudiant information -->
+                                <input type="text" id="editNom" class="form-control" placeholder="Nom"/>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="saveChangesBtn">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="container mt-4 mb-4">
 
                     <!-- Enseignants Card -->
