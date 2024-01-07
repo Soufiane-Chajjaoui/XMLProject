@@ -1,37 +1,24 @@
 package com.example.merise.services;
 
- import com.example.merise.EntetiesXMLBind.Etablissment;
- import com.example.merise.EntetiesXMLBind.Etablissments;
- import com.example.merise.EntetiesXMLBind.Etudiant;
- import com.example.merise.EntetiesXMLBind.Etudiants;
- import org.springframework.stereotype.Service;
+import com.example.merise.EntetiesXMLBind.Etablissment;
+import com.example.merise.EntetiesXMLBind.Etablissments;
+import com.example.merise.EntetiesXMLBind.Etudiant;
+import com.example.merise.EntetiesXMLBind.Etudiants;
+import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
- import javax.xml.bind.Unmarshaller;
- import java.io.BufferedWriter;
- import java.io.File;
- import java.io.FileWriter;
+import javax.xml.bind.Unmarshaller;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.PrintWriter;
- import java.util.List;
- import java.util.Random;
+import java.util.List;
  
 @Service
 public class EtudiantService {
 	private static final String XML_FILE_PATH = "D:\\laragon\\www\\ProjetXML\\EST.xml";
-	private  String generateRandomString() {
-		String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-		Random random = new Random();
-		StringBuilder sb = new StringBuilder(10);
 
-		for (int i = 0; i < 10; i++) {
-			int randomIndex = random.nextInt(CHARACTERS.length());
-			char randomChar = CHARACTERS.charAt(randomIndex);
-			sb.append(randomChar);
-		}
-
-		return sb.toString();
-	}
 
 	public void addEtudiant(Etudiant etudiant) {
 		try {

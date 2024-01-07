@@ -13,7 +13,7 @@ public class Diplome {
 
     @XmlAttribute(name = "idDeplome")
 //    @XmlID n'est pas compatible avec UUID elle accorde just avec String
-    private UUID idDiplome;
+    private UUID idDiplome = UUID.randomUUID();
     @XmlAttribute(name = "NoteDeplome")
     @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
     @DecimalMax(value = "20" , inclusive = true)
@@ -57,7 +57,6 @@ public class Diplome {
     private TypeDiplomeEnum typeDiplome;
 
     public Diplome() {
-        this.idDiplome = UUID.randomUUID();
         this.ImageDiplome = "assets/Diplome.txt" ;
         this.ImageReleve = "assets/Releve.txt" ;
     }

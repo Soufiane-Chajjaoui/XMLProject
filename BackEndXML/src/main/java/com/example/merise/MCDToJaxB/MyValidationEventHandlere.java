@@ -4,8 +4,6 @@ import javax.xml.bind.ValidationEvent;
 import javax.xml.bind.ValidationEventHandler;
 
 public class MyValidationEventHandlere implements ValidationEventHandler {
-
-
     @Override
     public boolean handleEvent(ValidationEvent event) {
         System.out.println("\nEVENT");

@@ -21,8 +21,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-<!--		API Implementation-->
-
+<!--		API Implementation JAXB-->
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-impl</artifactId>
@@ -30,7 +29,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!--			API reference-->
+<!--		API reference JAXB-->
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
@@ -38,7 +37,6 @@
 		</dependency>
 
 <!--		Api For Validation Schema With Annotation-->
-
 		<dependency>
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>

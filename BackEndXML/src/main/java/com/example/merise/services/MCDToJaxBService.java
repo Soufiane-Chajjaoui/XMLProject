@@ -34,7 +34,7 @@ public class MCDToJaxBService {
             if (file.length() == 0){
                 etudiants = new Etudiants();
             }else {
-                Unmarshaller unmarshaller = context.createUnmarshaller(); // faactory get Unmarshaller object
+                Unmarshaller unmarshaller = context.createUnmarshaller(); // factory get Unmarshaller object
 //                unmarshaller.setSchema(schema); Add schema in file xml for validation
 //                unmarshaller.setEventHandler(new MyValidationEventHandlere()); set Handler
                 etudiants = (Etudiants) unmarshaller.unmarshal(file); // deserialize
@@ -64,6 +64,8 @@ public class MCDToJaxBService {
                 fileWriter.write(stringWriter.toString());
             }
             return Optional.of(etudiantParam);
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,5 +112,51 @@ public class MCDToJaxBService {
     return Optional.empty();
     }
 
+    public Optional<Etudiant> updateEtudiant(UUID id ,String nom){
+        File file = new File(XML_FILE_PATH);
+        Etudiant etudiant = null;
+        boolean found = false;
+        try {
+            JAXBContext context = JAXBContext.newInstance(Etudiants.class);
+            Marshaller marshaller = context.createMarshaller();
+            Unmarshaller unmarshaller = context.createUnmarshaller();
 
+            Etudiants etudiants ;
+            if (file.length() == 0){
+                etudiants = new Etudiants();
+            }else {
+                etudiants = (Etudiants) unmarshaller.unmarshal(file);
+                for (Etudiant e : etudiants.getEtudiants()){
+                    if (e.getIdPerson().equals(id)){
+                        found=!found;
+                        e.setNom(nom);
+                        etudiant = e ;
+                    }
+                }
+            }
+
+            marshaller.setProperty(Marshaller.JAXB_FRAGMENT , true);
+
+            if (found){
+                StringWriter stringWriter = new StringWriter();
+
+                stringWriter.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+                stringWriter.write("<?xml-stylesheet type=\"text/xsl\" href=\"MCDToSCHEMA.xsl\"?>\n");
+
+                // Marshal Etudiants to XML and append to the StringWriter
+                marshaller.setProperty(Marshaller.JAXB_FRAGMENT, true); // JaxB_FRAGMENT for prevent set prolog xml automatically
+                marshaller.marshal(etudiants, stringWriter);
+
+                // Write the content to the file
+                try (FileWriter fileWriter = new FileWriter(file)) {
+                    fileWriter.write(stringWriter.toString());
+                }
+                return Optional.of(etudiant);
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
 }
