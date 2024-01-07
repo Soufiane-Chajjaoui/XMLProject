@@ -31,7 +31,7 @@
                     // Prevent the default form submission
                     event.preventDefault();
                     var formData = {};
-                    
+                    console.log($("#condid").val());
                     // Gather form data
                     var formData = {
                     prenom: $("#prenom").val(),
@@ -39,16 +39,35 @@
                     email: $("#email").val(),
                     tele: $("#tele").val(),
                     address: $("#address").val(),
-                    sex: $("#Sexe").val(),
+                    sex: $("#Sexe").val().toUpperCase(),
                     dateNaissance: $("#datenaiss").val(),
                     cne: $("#cne").val(),
                     bac: {
-                    regional: $("#Regional").val(),
-                    national: $("#National").val(),
-                    specBac : $("#filiere").val(),
-                    dateBac : "2021"
+                       regional: $("#Regional").val(),
+                       national: $("#National").val(),
+                       specBac : $("#filiereBac").val(),
+                       dateBac : $("#dateBac").val(),
+                       mention : $("#mentionBac").val()
                     },
-                    refEtablissment : $("#idetablissment").val()
+                    condidature : {
+                       choix : $("#choix").val()
+                    },
+                    diplome : {
+                       typeDiplome : $("#typeDiplome").val(),
+                       mention : $("#mentionDiplome").val(),
+                       filiereDiplome : $("#filiereDiplome").val() ,
+                       notes1 : $("#notes1").val() ,
+                       notes2 : $("#notes2").val() ,
+                       notes3 : $("#notes3").val() ,
+                       notes4 : $("#notes4").val() ,
+                       validationFirstYear : $("#notesFirstYear").val() ,
+                       validationSecondYear : $("#notesSecondYear").val() ,
+                       nbretudiantsFirstYear : $("#nbretudiantsFirstYear").val(),
+                       nbretudiantsSecondYear : $("#nbretudiantsSecondYear").val() ,
+                       order : $("#Order").val() ,
+                       noteDiplome : $("#noteDiplome").val()
+                    }
+                    
                     };
                     
                     
@@ -179,8 +198,8 @@
                                     <div class="col-md-3 mb-3">
                                         <label for="Sexe">Sexe</label>
                                         <select class="custom-select" id="Sexe">
-                                            <option  value="homme">Homme</option>
-                                            <option  value="femme">Femme</option>
+                                            <option  value="HOMME">Homme</option>
+                                            <option  value="FEMME">Femme</option>
                                         </select>
                                     </div>
                                 </div>
@@ -191,7 +210,7 @@
                                         <input type="text" maxlength="10"  class="form-control" id="cne" required="true"/>
                                     </div>
                                     <div class="col-md-4 mb-4">
-                                        <label for="national">Mention</label>
+                                        <label for="national">Mention Bac</label>
                                         <select class="custom-select" id="mentionBac"  >
                                             <option value="PASSABLE">PASSABLE</option>
                                             <option value="ASSEZ_BIEN" selected="true">ASSEZ BIEN</option>
@@ -200,8 +219,8 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="filiere">Filiere</label>
-                                        <select class="custom-select" id="filiere"  >
+                                        <label for="filiere">Filiere Bac</label>
+                                        <select class="custom-select" id="filiereBac"  >
                                             <option value="SMB">BAC SCIENCES MATHÉMATIQUES B.</option>
                                             <option value="PC">BAC SCIENCES PHYSIQUES.</option>
                                             <option value="SVT">BAC SVT.</option>
@@ -212,7 +231,7 @@
                                 <div class="form-row">
                                     <div class="col-md-4 mb-3">
                                         <label for="dateBac">Date Obtenir</label>
-                                        <input type="date" class="form-control" id="dateBac"  />
+                                        <input type="text" class="form-control" id="dateBac"  />
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="regional">Regional</label>
@@ -227,7 +246,7 @@
                                 <div class="form-row">
                                     <div class="col-md-4 mb-3">
                                         <label for="etablissment">Type Diplome</label>
-                                        <select class="custom-select" id="idetablissment">
+                                        <select class="custom-select" id="typeDiplome">
                                             <option value="DUT">DUT</option>
                                             <option value="BTS">BTS</option>
                                         </select>
@@ -251,8 +270,58 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="col-md-4">
-                                        <label for=""></label>
+                                    <div class="col-md-2 mb-3">
+                                        <label >Note S1</label>
+                                        <input type="text" min="10" max="20" class="form-control" id="notes1"/>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label >Note S2</label>
+                                        <input type="text" min="10" max="20" class="form-control" id="notes2"/>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label >Note S3</label>
+                                        <input type="text" min="10" max="20" class="form-control" id="notes3"/>
+                                    </div>                                   
+                                    <div class="col-md-2 mb-3">
+                                        <label >Note S4</label>
+                                        <input type="text" min="10" max="20" class="form-control" id="notes4"/>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label >Note Premier annee</label>
+                                        <input type="text" min="10" max="20" class="form-control" id="notesFirstYear"/>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label for="etablissment">Note 2eme annee</label>
+                                        <input type="text" min="10" max="20" class="form-control" id="notesSecondYear"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-3">
+                                        <label>number Etudiants 1 annee</label>
+                                        <input type="number" class="form-control" id="nbretudiantsFirstYear" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>number Etudiants 2 annee</label>
+                                        <input type="number" class="form-control" id="nbretudiantsSecondYear" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>Order</label>
+                                        <input type="number" class="form-control" id="Order" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>Note Diplome</label>
+                                        <input type="text" class="form-control" id="noteDiplome" />
+                                    </div>
+                                </div>
+                                <hr></hr>
+                                <div class="form-row">
+                                    <div class="col-5">
+                                        <label >Condidatue</label>
+                                        <select class="form-control" multiple="true" id="choix">
+                                            <option value="ISIR">ISIR</option>
+                                            <option value="TM">TM</option>
+                                            <option value="ITIMQ">ITIMQ</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <hr></hr>
