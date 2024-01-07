@@ -12,7 +12,7 @@
                 <script>
                     $(document).ready(function(){
                     $(".card").hide();
-                    $("#etablissmentsCard").show();
+                    $("#etudiantsCard").show();
                     // jQuery function to handle click on the navbar brand
                     $(".nav-link").click(function(){
                     console.log("Clicked on " + $(this).text() + " link!");
@@ -29,6 +29,11 @@
                     var linkText = $(this).text().toLowerCase();
                     $("#" + linkText + "Card").show();
                     });
+                    
+                    $(".delete-row").on("click", function () {
+                    // Find the parent row and remove it
+                    $(this).closest('tr').remove();
+                    })
                     $("form").submit(function (event) {
                     // Prevent the default form submission
                     event.preventDefault();
@@ -118,7 +123,7 @@
                     <a class="navbar-brand" href="#">ESTS</a>
                     <div class="p-3">
                         <ul class="nav navbar-nav">
-                            <li class="nav-item"><a class="nav-link" rel="noopener noreferrer" >Etudiants</a></li>
+                            <li class="nav-item"><a class="nav-link active" rel="noopener noreferrer" >Etudiants</a></li>
                             <li class="nav-item"><a class="nav-link" rel="noopener noreferrer" >Inscription</a></li>
                         </ul>
                     </div>
@@ -126,43 +131,44 @@
                 <div class="container mt-4 mb-4">
 
                     <!-- Enseignants Card -->
-                    <div class="card" id="enseignantsCard">
+                    <div class="card" id="etudiantsCard">
                         <div class="card-header">
                             <div class="d-flex justify-content-between">
-                                <h3 class="card-title">List de Enseignants</h3>
-                                <button type="button" class="btn btn-outline-secondary">Ajoute Enseignant</button>
+                                <h3 class="card-title">List de Etudiants</h3>
                             </div>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
+                                        <th scope="col">CNE</th>
                                         <th scope="col">Nom</th>
                                         <th scope="col">Prenom</th>
                                         <th scope="col">Telephone</th>
-                                        <th scope="col">email</th>
-                                        <th scope="col">address</th>
-                                        
-                                        <th scope="col" class="text-center">Action</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col" class="text-center">Choix</th>
+                                        <th scope="col" class="text-center" colspan="2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <xsl:for-each select="/Universite/Etablissments/Etablissment/Enseignants/Enseignant">
-                                        <tr>
-                                            <td><xsl:value-of select="@idPerson"/></td>
+                                    <xsl:for-each select="/Etudiants/Etudiant">
+                                        <tr id="{@idPerson}">
+                                            <td><xsl:value-of select="@cne"/></td>
                                             <td><xsl:value-of select="Nom"/></td>
                                             <td><xsl:value-of select="Prenom"/></td>
                                             <td><xsl:value-of select="Telephone"/></td>
                                             <td><xsl:value-of select="email"/></td>
                                             <td><xsl:value-of select="address"/></td>
-                                            <td><xsl:for-each select="Matiers/Matier">
+                                            <td><xsl:for-each select="Condidature/Choix">
                                                 <xsl:value-of select="."/>
                                                 <xsl:if test="position() &lt; last()"> + </xsl:if>
                                             </xsl:for-each></td>
-                                            <td class="d-flex justify-content-around">
+                                            <td class="text-secondary">
                                                 <i class="fas fa-pen"></i>
-                                                <i class="fas fa-trash"></i>
+                                            </td>
+                                            <td class="text-danger delete-row">
+                                                <i class="fas fa-trash"></i> 
                                             </td>
                                         </tr>                        
                                     </xsl:for-each>
