@@ -22,13 +22,15 @@ public class EtudiantController {
 	@PostMapping
 	@CrossOrigin
 
-	public ResponseEntity<Optional<Etudiant>> addEtudiant(@RequestBody Etudiant etudiant){
+	public ResponseEntity<?> addEtudiant(@RequestBody Etudiant etudiant) {
 		Optional<Etudiant> addedEtudiant = Studantservice.addStudant(etudiant);
 
 		if (addedEtudiant.isPresent()) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(addedEtudiant);
+		} else {
+			String errorMessage = "Failed to add the student. Student with the same CNE already exists.";
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
 		}
-		// Return ResponseEntity with the entire Optional<Etudiant> as the response body
-		return ResponseEntity.status(HttpStatus.CONFLICT).body(Optional.empty());
 	}
+
 }

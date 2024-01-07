@@ -10,6 +10,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.StringWriter;
 import java.util.Optional;
 
 @Service
@@ -49,36 +51,28 @@ public class MCDToJaxBService {
 
             for(Etudiant e : etudiants.getEtudiants()){
                 if (e.getCne().equals(etudiantParam.getCne())){
-                    String message = "Etudiant avec CNE"+ etudiantParam.getCne() + "est Deja Exist" ;
                     return Optional.empty();
                 }
             }
             etudiants.setEtudiant(etudiantParam);
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT , true);
-            marshaller.marshal(etudiants, file); // for Serialize Object instanceOf Etudiants
 
-            // Marshal Etudiants to XML
-//            StringWriter stringWriter = new StringWriter();
-//            marshaller.marshal(etudiants, stringWriter);
-//            String xmlString = "<?xml-stylesheet type=\"text/xsl\" href=\"StyleSheet-ESTS.xsl\"?>" + stringWriter.toString();
-//
-//            // Write the XML string to the file
-//            try (FileWriter fileWriter = new FileWriter(file)) {
-//                fileWriter.write(xmlString);
-//            }
+            // Create a StringWriter to hold the XML content
+            StringWriter stringWriter = new StringWriter();
 
-            return Optional.of(etudiantParam) ;
-//            pour genere Schema a traver des classes java avec Annotation Xml
-//            context.generateSchema(
-//                    new SchemaOutputResolver() {
-//                        @Override
-//                        public Result createOutput(String namespaceUri, String suggestedFileName) throws IOException {
-//                            File fileSchema = new File(XSD_FILE_PATH);
-//                            StreamResult streamResult = new StreamResult(fileSchema);
-//                            return streamResult;
-//                        }
-//                    }
-//            );
+            // Add XML prolog and stylesheet processing instruction
+            stringWriter.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+            stringWriter.write("<?xml-stylesheet type=\"text/xsl\" href=\"MCDToSCHEMA.xsl\"?>\n");
+
+            // Marshal Etudiants to XML and append to the StringWriter
+            marshaller.setProperty(Marshaller.JAXB_FRAGMENT, true); // JaxB_FRAGMENT for prevent set prolog xml automatically
+            marshaller.marshal(etudiants, stringWriter);
+
+            // Write the content to the file
+            try (FileWriter fileWriter = new FileWriter(file)) {
+                fileWriter.write(stringWriter.toString());
+            }
+            return Optional.of(etudiantParam);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
