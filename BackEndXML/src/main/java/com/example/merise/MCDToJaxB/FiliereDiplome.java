@@ -1,37 +1,38 @@
 package com.example.merise.MCDToJaxB;
 
 import javax.xml.bind.annotation.*;
+import java.util.UUID;
 
 @XmlRootElement(name = "FiliereDiplome")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class FiliereDiplome {
 
     @XmlAttribute(name = "idFiliere" , required = true)
-    private String idFiliere ;
+    private UUID idFiliere ;
 
     @XmlElement(name = "Filiere")
-    private FiliereEnum someOtherNameForFiliereEnum;
+    private FilierDiplomeEnum filiereDiplome;
     public FiliereDiplome() {
     }
 
-    public FiliereDiplome(String idF, FiliereEnum f) {
-        this.idFiliere = idF;
-        this.someOtherNameForFiliereEnum = f;
+    public FiliereDiplome(UUID idF, FilierDiplomeEnum f) {
+        this.idFiliere = UUID.randomUUID();
+        this.filiereDiplome = f;
     }
 
-    public String getIdFiliere() {
+    public UUID getIdFiliere() {
         return idFiliere;
     }
 
-    public void setIdFiliere(String idF) {
+    public void setIdFiliere(UUID idF) {
         this.idFiliere = idF;
     }
 
-    public FiliereEnum getfiliere_enum() {
-        return someOtherNameForFiliereEnum;
+    public FilierDiplomeEnum getFiliereDiplome() {
+        return filiereDiplome;
     }
 
-    public void setfiliere_enum(FiliereEnum filiere) {
-        this.someOtherNameForFiliereEnum = filiere;
+    public void setFiliereDiplome(FilierDiplomeEnum filiere) {
+        this.filiereDiplome = filiere;
     }
 }

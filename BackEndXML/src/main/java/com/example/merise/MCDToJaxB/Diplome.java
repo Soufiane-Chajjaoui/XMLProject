@@ -13,12 +13,12 @@ public class Diplome {
 
     @XmlAttribute(name = "idDeplome")
 //    @XmlID n'est pas compatible avec UUID elle accorde just avec String
-    private UUID idDeplome;
+    private UUID idDiplome;
     @XmlAttribute(name = "NoteDeplome")
     @Digits(fraction = 2 , message = "just 4 digit not more", integer = 4)
     @DecimalMax(value = "20" , inclusive = true)
     @DecimalMin(value = "10" , inclusive = true)
-    private double noteDeplome;
+    private double noteDiplome;
     @XmlElement(name = "NoteS1")
     private double notes1 ;
     @XmlElement(name = "NoteS2")
@@ -43,30 +43,33 @@ public class Diplome {
     @Pattern(regexp = ".*\\.(jpg|jpeg|png|gif|bmp)$", message = "Invalid image file format")
     private String ImageReleve;
 
-    @XmlElement(name = "ImageDeplome")
-    private String ImageDeplome;
+    @XmlElement(name = "ImageDiplome")
+    private String ImageDiplome;
 
     @XmlElement(name = "Mention")
     private Mention mention;
 
     @XmlElement(name = "FiliereDiplome")
-    private FiliereDiplome someOtherNameForFiliereDiplome;
+    private FilierDiplomeEnum someOtherNameForFiliereDiplome;
 
 
     @XmlElement(name = "TypeDiplome")
-    private TypeDiplome typeDiplome;
+    private TypeDiplomeEnum typeDiplome;
 
     public Diplome() {
+        this.idDiplome = UUID.randomUUID();
+        this.ImageDiplome = "assets/Diplome.txt" ;
+        this.ImageReleve = "assets/Releve.txt" ;
     }
 
     public Diplome(UUID idDeplome, double noteDeplome, double notes1
             , double notes2, double notes3, double notes4
             , double validationFirstYear, double validationSecondYear
             , int nbretudiantsFirstYear, int nbretudiantsSecondYear
-            , int order, String imageReleve, String imageDeplome
-            , Mention mention, FiliereDiplome filiere, TypeDiplome typeDiplome) {
-        this.idDeplome = UUID.randomUUID();
-        this.noteDeplome = noteDeplome;
+            , int order, String imageReleve, String ImageDiplome
+            , Mention mention, FilierDiplomeEnum filiere, TypeDiplomeEnum typeDiplome) {
+        this.idDiplome = UUID.randomUUID();
+        this.noteDiplome = noteDeplome;
         this.notes1 = notes1;
         this.notes2 = notes2;
         this.notes3 = notes3;
@@ -76,8 +79,8 @@ public class Diplome {
         NbretudiantsFirstYear = nbretudiantsFirstYear;
         NbretudiantsSecondYear = nbretudiantsSecondYear;
         this.order = order;
-        ImageReleve = imageReleve;
-        ImageDeplome = imageDeplome;
+        ImageReleve = "assets/Releve.txt";
+        ImageDiplome = "assets/Deplome.txt";
         this.mention = mention;
         this.someOtherNameForFiliereDiplome = filiere;
         this.typeDiplome = typeDiplome;
@@ -91,36 +94,36 @@ public class Diplome {
         this.mention = mention;
     }
 
-    public FiliereDiplome getFiliereDiplome() {
+    public FilierDiplomeEnum getFiliereDiplome() {
         return someOtherNameForFiliereDiplome;
     }
 
-    public void setFiliereDiplome(FiliereDiplome filiereDiplome) {
+    public void setFiliereDiplome(FilierDiplomeEnum filiereDiplome) {
         this.someOtherNameForFiliereDiplome = filiereDiplome;
     }
 
-    public TypeDiplome getTypeDiplome() {
+    public TypeDiplomeEnum getTypeDiplome() {
         return typeDiplome;
     }
 
-    public void setTypeDiplome(TypeDiplome typeDiplome) {
+    public void setTypeDiplome(TypeDiplomeEnum typeDiplome) {
         this.typeDiplome = typeDiplome;
     }
 
-    public UUID getIdDeplome() {
-        return idDeplome;
+    public UUID getIdDiplome() {
+        return idDiplome;
     }
 
-    public void setIdDeplome() {
-        this.idDeplome = UUID.randomUUID();
+    public void setIdDiplome() {
+        this.idDiplome = UUID.randomUUID();
     }
 
-    public double getNoteDeplome() {
-        return noteDeplome;
+    public double getNoteDiplome() {
+        return noteDiplome;
     }
 
-    public void setNoteDeplome(double noteDeplome) {
-        this.noteDeplome = noteDeplome;
+    public void setNoteDiplome(double noteDeplome) {
+        this.noteDiplome = noteDeplome;
     }
 
     public double getNotes1() {
@@ -200,14 +203,14 @@ public class Diplome {
     }
 
     public void setImageReleve(String imageReleve) {
-        ImageReleve = imageReleve;
+        ImageReleve = "assets/Releve.txt";
     }
 
-    public String getImageDeplome() {
-        return ImageDeplome;
+    public String getImageDiplome() {
+        return ImageDiplome;
     }
 
-    public void setImageDeplome(String imageDeplome) {
-        ImageDeplome = imageDeplome;
+    public void setImageDiplome(String ImageDiplome) {
+        ImageDiplome = "assets/Deplome.txt";
     }
 }

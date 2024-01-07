@@ -6,36 +6,38 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Condidature {
 
     @XmlAttribute(name = "idCondidature")
-    private String idCondidature;
+    private UUID idCondidature;
     @XmlElement(name = "Choix")
     private List<FiliereEnum> choix = new ArrayList<>();
 
     public Condidature() {
+        this.idCondidature = UUID.randomUUID();
     }
 
-    public Condidature(String idCondidature, List<FiliereEnum> choix) {
-        this.idCondidature = idCondidature;
+    public Condidature(UUID idCondidature, List<FiliereEnum> choix) {
+        this.idCondidature = UUID.randomUUID();
         this.choix = choix;
     }
 
-    public String getIdCondidature() {
+    public UUID getIdCondidature() {
         return idCondidature;
     }
 
-    public void setIdCondidature(String idCondidature) {
-        this.idCondidature = idCondidature;
+    public void setIdCondidature(UUID idCondidature) {
+        this.idCondidature = UUID.randomUUID();
     }
 
     public List<FiliereEnum> getChoix() {
         return choix;
     }
 
-    public void setChoix(FiliereEnum choix) {
-        this.choix.add(choix);
+    public void setChoix(List<FiliereEnum> choix) {
+        this.choix.addAll(choix);
     }
 }

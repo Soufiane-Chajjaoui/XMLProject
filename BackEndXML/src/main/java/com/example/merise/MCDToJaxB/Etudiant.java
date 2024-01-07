@@ -35,7 +35,13 @@ public class Etudiant extends Person {
     }
 
 
+    public Diplome getDiplome() {
+        return diplome;
+    }
 
+    public void setDiplome(Diplome diplome) {
+        this.diplome = diplome;
+    }
 
     public Condidature getCondidature() {
         return condidature;

@@ -1,22 +1,23 @@
 package com.example.merise.services;
 
-import com.example.merise.MCDToJaxB.*;
+import com.example.merise.MCDToJaxB.Bac;
+import com.example.merise.MCDToJaxB.Etudiant;
+import com.example.merise.MCDToJaxB.Etudiants;
+import com.example.merise.MCDToJaxB.FiliereDiplome;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.util.Arrays;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class MCDToJaxBService {
 
     private static final String XML_FILE_PATH = "D:\\laragon\\www\\ProjetXML\\EST.xml";
     private static final String XSD_FILE_PATH = "D:\\laragon\\www\\ProjetXML\\MCDToSCHEMA.xsd" ;
-    public Optional<Etudiant> addStudant(Etudiant etudiant2) {
+    public Optional<Etudiant> addStudant(Etudiant etudiantParam) {
         File file = new File(XML_FILE_PATH);
         try {
             JAXBContext context = JAXBContext.newInstance(Bac.class, Etudiant.class, Etudiants.class, FiliereDiplome.class);
@@ -35,24 +36,25 @@ public class MCDToJaxBService {
                 etudiants = (Etudiants) unmarshaller.unmarshal(file); // deserialize
             }
 
-            Etudiant etudiant = new Etudiant(UUID.randomUUID(), "Soufian", "chajjaoui", "0607025329", "schajjaoui@gmail.com",
-                    "Safi, Rue 19", SexEnum.HOMME, "2003", "K1331331131"
-                    , new Bac(TypeBac.PC, "2021", "14.36", "12.46" , Mention.BIEN)
-                    , new Condidature(UUID.randomUUID().toString(), Arrays.asList(FiliereEnum.GENIE_INDUSTRIELLE, FiliereEnum.GENIE_INFORMATIQUE))
-                    , new Diplome(UUID.randomUUID() , 12.74 , 12.30 , 12.47 , 13.01 , 12.70
-                    , 12.40 , 12.70 , 160 , 100
-                    , 93 , "assets/Releve.txt" , "assets/profileImage.txt", Mention.ASSEZ_BIEN
-                    , new FiliereDiplome(UUID.randomUUID().toString() , FiliereEnum.GENIE_INFORMATIQUE)
-                    , new TypeDiplome(UUID.randomUUID().toString() , TypeDiplomeEnum.DUT))
-            );
+//            Etudiant etudiant = new Etudiant(UUID.randomUUID(), "Soufian", "chajjaoui", "0607025329", "schajjaoui@gmail.com",
+//                    "Safi, Rue 19", SexEnum.HOMME, "2003", "K1331331131"
+//                    , new Bac(TypeBac.PC, "2021", "14.36", "12.46" , Mention.BIEN)
+//                    , new Condidature(UUID.randomUUID(), Arrays.asList(FiliereEnum.TM, FiliereEnum.ISIR))
+//                    , new Diplome(UUID.randomUUID() , 12.74 , 12.30 , 12.47 , 13.01 , 12.70
+//                    , 12.40 , 12.70 , 160 , 100
+//                    , 93 , "assets/Releve.txt" , "assets/profileImage.txt", Mention.ASSEZ_BIEN
+//                    ,  FilierDiplomeEnum.GENIE_INFORMATIQUE
+//                    ,  TypeDiplomeEnum.DUT)
+//            );
 
             for(Etudiant e : etudiants.getEtudiants()){
-                if (e.getCne().equals(etudiant.getCne())){
-                    String message = "Etudiant avec CNE"+ etudiant.getCne() + "est Deja Exist" ;
+                if (e.getCne().equals(etudiantParam.getCne())){
+                    String message = "Etudiant avec CNE"+ etudiantParam.getCne() + "est Deja Exist" ;
                     return Optional.empty();
                 }
             }
-            etudiants.setEtudiant(etudiant);
+            etudiants.setEtudiant(etudiantParam);
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT , true);
             marshaller.marshal(etudiants, file); // for Serialize Object instanceOf Etudiants
 
             // Marshal Etudiants to XML
@@ -65,7 +67,7 @@ public class MCDToJaxBService {
 //                fileWriter.write(xmlString);
 //            }
 
-            return Optional.of(etudiant) ;
+            return Optional.of(etudiantParam) ;
 //            pour genere Schema a traver des classes java avec Annotation Xml
 //            context.generateSchema(
 //                    new SchemaOutputResolver() {

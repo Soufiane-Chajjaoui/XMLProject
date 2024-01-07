@@ -1,12 +1,13 @@
 package com.example.merise.MCDToJaxB;
 
 import javax.xml.bind.annotation.*;
+import java.util.UUID;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TypeDiplome {
 
     @XmlAttribute(name = "idTypeDiplome")
-    private String idTypeDiplome ;
+    private UUID idTypeDiplome ;
 
     @XmlValue
     private TypeDiplomeEnum typeDiplome ;
@@ -14,16 +15,16 @@ public class TypeDiplome {
     public TypeDiplome() {
     }
 
-    public TypeDiplome(String idTypeDiplome, TypeDiplomeEnum typeDiplome) {
-        this.idTypeDiplome = idTypeDiplome;
+    public TypeDiplome(UUID idTypeDiplome, TypeDiplomeEnum typeDiplome) {
+        this.idTypeDiplome = UUID.randomUUID();
         this.typeDiplome = typeDiplome;
     }
 
-    public String getIdTypeDiplome() {
+    public UUID getIdTypeDiplome() {
         return idTypeDiplome;
     }
 
-    public void setIdTypeDiplome(String idTypeDiplome) {
+    public void setIdTypeDiplome(UUID idTypeDiplome) {
         this.idTypeDiplome = idTypeDiplome;
     }
 

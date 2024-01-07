@@ -15,6 +15,7 @@ public class Person {
     private String dateNaissance;
 
     public Person() {
+        this.idPerson = UUID.randomUUID();
     }
 
     public Person(UUID idPerson , String prenom, String nom, String tele, String email, String address, SexEnum sex, String dateNaissance) {
