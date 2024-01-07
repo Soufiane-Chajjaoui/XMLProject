@@ -7,6 +7,8 @@
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"></link>
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"/>
                 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" />
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
                 <script>
                     $(document).ready(function(){
                     $(".card").hide();
@@ -79,10 +81,22 @@
                     contentType: "application/json",
                     data: JSON.stringify(formData),
                     success: function (response) {
+                    iziToast.success({
+                    title: 'ete bien',
+                    message: `${response.nom} has been added`,
+                    position: 'bottomRight', // You can change the position: 'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'
+                    theme: 'light', // You can use 'dark' theme as well
+                    timeout: 7000, // Time in milliseconds to auto-close the notification (set to 0 to disable auto-close)
+                    progressBarColor: '#3498db', // Color of the progress bar
+                    });
                     console.log("Data sent successfully:", response);
                     // You can perform additional actions here if needed
                     },
                     error: function (xhr, status, error) {
+                    iziToast.warning({
+                    title: 'Caution',
+                    message: xhr.responseText,
+                    });
                     console.error("Error sending data:");
                     console.error("Status:", status);
                     console.error("Error:", error);
