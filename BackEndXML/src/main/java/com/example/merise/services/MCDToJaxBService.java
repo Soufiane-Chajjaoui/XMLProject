@@ -72,7 +72,6 @@ public class MCDToJaxBService {
         }
         return Optional.empty();
     }
-
     public Optional<?> removeStudent(UUID idPerson){
     try {
         JAXBContext context = JAXBContext.newInstance(Etudiants.class);
@@ -159,4 +158,5 @@ public class MCDToJaxBService {
         }
         return Optional.empty();
     }
+
 }

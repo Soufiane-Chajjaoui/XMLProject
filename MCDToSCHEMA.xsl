@@ -179,7 +179,6 @@
                     var nom = $("#editNom").val();
                     
                     var editedTd = $(`#${idPersonVal} td:nth-child(2)`);
-                    editedTd.addClass('edited');
                     
                     // Send AJAX request to delete data on the server
                     $.ajax({
@@ -187,6 +186,8 @@
                     url:  `http://localhost:8080/Etudiants/${idPersonVal}/${nom}`,
                     contentType: "application/json", 
                     success: function (response) {
+                    editedTd.addClass('edited');
+                    
                     iziToast.success({ 
                     title: 'ete bien modifie',
                     position: 'bottomRight',
@@ -203,15 +204,13 @@
                     // You can perform additional actions here if needed
                     }
                     });
+                                                            
+                    $(`#${idPersonVal} td:nth-child(2)`).text(nom);   
                     
-                    $(`#${idPersonVal}`).fadeIn(1000);
-                    
-                    $(`#${idPersonVal} td:nth-child(2)`).text(nom);
-                    
-                    
-                    editedTd.removeClass('edited');
                     // Close the modal
                     $('#editEtudiantModal').modal('hide');
+    
+                    editedTd.removeClass('edited');
     
                     });
                     });
@@ -222,8 +221,8 @@
                     }
                     /* Add some style for the edited class */
                     .edited {
-                    background-color: #FFFFE0; /* Light yellow background */
-                    transition: background-color 0.5s; /* Smooth transition effect */
+                    background-color: #bcbc45; /* Light yellow background */
+                    transition: background-color 1s; /* Smooth transition effect */
                     }
                     
                 </style>
