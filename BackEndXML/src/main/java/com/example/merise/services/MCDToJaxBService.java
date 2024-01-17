@@ -1,16 +1,20 @@
 package com.example.merise.services;
 
-import com.example.merise.MCDToJaxB.Bac;
-import com.example.merise.MCDToJaxB.Etudiant;
-import com.example.merise.MCDToJaxB.Etudiants;
-import com.example.merise.MCDToJaxB.FiliereDiplome;
+import com.example.merise.MCDToJaxB.*;
 import org.springframework.stereotype.Service;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.SchemaOutputResolver;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.Result;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Iterator;
 import java.util.Optional;
@@ -26,8 +30,8 @@ public class MCDToJaxBService {
         try {
             JAXBContext context = JAXBContext.newInstance(Bac.class, Etudiant.class, Etudiants.class, FiliereDiplome.class);
             Marshaller marshaller = context.createMarshaller();
-//            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-//            Schema schema = sf.newSchema(new File(XSD_FILE_PATH));
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = sf.newSchema(new File(XSD_FILE_PATH));
             Etudiants etudiants ;
 
 
@@ -35,8 +39,8 @@ public class MCDToJaxBService {
                 etudiants = new Etudiants();
             }else {
                 Unmarshaller unmarshaller = context.createUnmarshaller(); // factory get Unmarshaller object
-//                unmarshaller.setSchema(schema); Add schema in file xml for validation
-//                unmarshaller.setEventHandler(new MyValidationEventHandlere()); set Handler
+                unmarshaller.setSchema(schema); //Add schema in file xml for validation
+                unmarshaller.setEventHandler(new MyValidationEventHandlere()); // set Handler
                 etudiants = (Etudiants) unmarshaller.unmarshal(file); // deserialize
             }
 
@@ -149,6 +153,17 @@ public class MCDToJaxBService {
                 // Write the content to the file
                 try (FileWriter fileWriter = new FileWriter(file)) {
                     fileWriter.write(stringWriter.toString());
+
+                    context.generateSchema(
+                            new SchemaOutputResolver() {
+                                @Override
+                                public Result createOutput(String namespaceUri, String suggestedFileName) throws IOException {
+                                    File fileSchema = new File("D:\\laragon\\www\\ProjetXML\\MCDToSCHEMA.xml");
+                                    StreamResult streamResult = new StreamResult(fileSchema);
+                                    return streamResult;
+                                }
+                            }
+                    );
                 }
                 return Optional.of(etudiant);
 

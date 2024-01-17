@@ -57,8 +57,8 @@ public class Diplome {
     private TypeDiplomeEnum typeDiplome;
 
     public Diplome() {
-        this.ImageDiplome = "assets/Diplome.txt" ;
-        this.ImageReleve = "assets/Releve.txt" ;
+        this.ImageDiplome = "imageDiplomePNG" ;
+        this.ImageReleve = "imageRelevePNG" ;
     }
 
     public Diplome(UUID idDeplome, double noteDeplome, double notes1
