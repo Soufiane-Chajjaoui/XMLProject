@@ -10,6 +10,7 @@
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" />
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" />
+                <link rel="icon" type="image/png" href="Logo_ESTS.png" />
                  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
                     
                 <script>
@@ -475,7 +476,7 @@
                                         <select class="form-control" multiple="true" id="choix">
                                             <option value="ISIR">ISIR</option>
                                             <option value="TM">TM</option>
-                                            <option value="ITIMQ">ITIMQ</option>
+                                            <option value="TIMQ">TIMQ</option>
                                         </select>
                                     </div>
                                 </div>

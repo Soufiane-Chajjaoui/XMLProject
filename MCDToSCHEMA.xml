@@ -7,14 +7,9 @@
 
   <xs:element name="Etudiants" type="etudiants"/>
 
-
-  <xs:complexType name="bac">
+  <xs:complexType name="etudiants">
     <xs:sequence>
-      <xs:element name="DateBac" type="xs:string"/>
-      <xs:element name="Mention" type="mention" />
-      <xs:element name="National" type="xs:string"/>
-      <xs:element name="Regional" type="xs:string"/>
-      <xs:element name="SpecBac" type="typeBac"/>
+      <xs:element ref="Etudiant" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -23,8 +18,8 @@
       <xs:extension base="person">
         <xs:sequence>
           <xs:element ref="Bac"/>
-          <xs:element name="Condidature" type="condidature"/>
-          <xs:element name="Diplome" type="diplome"/>
+          <xs:element name="Condidature" type="condidature" minOccurs="0"/>
+          <xs:element name="Diplome" type="diplome" minOccurs="0"/>
         </xs:sequence>
         <xs:attribute name="cne" type="xs:string" use="required"/>
       </xs:extension>
@@ -38,29 +33,31 @@
       <xs:element name="email" type="xs:string"/>
       <xs:element name="Nom" type="xs:string"/>
       <xs:element name="Prenom" type="xs:string"/>
-      <xs:element name="sex" type="xs:string"/>
+      <xs:element name="sex" type="sexEnum"/>
       <xs:element name="Telephone" type="xs:string"/>
     </xs:sequence>
-    <xs:attribute name="idPerson" type="xs:ID" use="required"/>
+    <xs:attribute name="idPerson" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="bac">
+    <xs:sequence>
+      <xs:element name="DateBac" type="xs:string"/>
+      <xs:element name="Mention" type="mention" minOccurs="0"/>
+      <xs:element name="National" type="xs:string"/>
+      <xs:element name="Regional" type="xs:string"/>
+      <xs:element name="SpecBac" type="typeBac"/>
+    </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="condidature">
     <xs:sequence>
-      <xs:element name="Choix" minOccurs="0" maxOccurs="3">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="ISIR"></xs:enumeration>
-            <xs:enumeration value="TM"></xs:enumeration>
-            <xs:enumeration value="TIMQ"></xs:enumeration>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
+      <xs:element name="Choix" type="filiereCondidateEnum" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="idCondidature" type="xs:string"/>
   </xs:complexType>
 
   <xs:complexType name="diplome">
-    <xs:all>
+    <xs:sequence>
       <xs:element name="NoteS1" type="xs:double"/>
       <xs:element name="NoteS2" type="xs:double"/>
       <xs:element name="NoteS3" type="xs:double"/>
@@ -70,22 +67,14 @@
       <xs:element name="NbretudiantsFirstYear" type="xs:int"/>
       <xs:element name="NbretudiantsSecondYear" type="xs:int"/>
       <xs:element name="Order" type="xs:int"/>
-      <xs:element name="ImageReleve" type="xs:string" />
-      <xs:element name="ImageDiplome" type="xs:string" />
-      <xs:element name="Mention" type="mention" />
-      <xs:element name="FiliereDiplome" type="filiereDiplome" />
-      <xs:element name="TypeDiplome" type="typeDiplome"  />
-    </xs:all>
+      <xs:element name="ImageReleve" type="xs:string" minOccurs="0"/>
+      <xs:element name="ImageDiplome" type="xs:string" minOccurs="0"/>
+      <xs:element name="Mention" type="mention" minOccurs="0"/>
+      <xs:element name="FiliereDiplome" type="filierDiplomeEnum" minOccurs="0"/>
+      <xs:element name="TypeDiplome" type="typeDiplomeEnum" minOccurs="0"/>
+    </xs:sequence>
     <xs:attribute name="idDeplome" type="xs:string"/>
     <xs:attribute name="NoteDeplome" type="xs:double" use="required"/>
-  </xs:complexType>
-
-
-
-  <xs:complexType name="etudiants">
-    <xs:sequence>
-      <xs:element ref="Etudiant" minOccurs="0" maxOccurs="unbounded"/>
-    </xs:sequence>
   </xs:complexType>
 
   <xs:simpleType name="mention">
@@ -106,7 +95,15 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="filiereDiplome">
+  <xs:simpleType name="filiereCondidateEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ISIR"/>
+      <xs:enumeration value="ITIMQ"/>
+      <xs:enumeration value="TM"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="filierDiplomeEnum">
     <xs:restriction base="xs:string">
       <xs:enumeration value="GENIE_INFORMATIQUE"/>
       <xs:enumeration value="GENIE_INDUSTRIELLE"/>
@@ -114,10 +111,17 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="typeDiplome">
+  <xs:simpleType name="typeDiplomeEnum">
     <xs:restriction base="xs:string">
       <xs:enumeration value="BTS"/>
       <xs:enumeration value="DUT"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="sexEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HOMME"/>
+      <xs:enumeration value="FEMME"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
